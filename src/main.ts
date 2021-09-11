@@ -1,3 +1,4 @@
+import { GridEngine } from "grid-engine";
 import Phaser from "phaser";
 import BootScene from "./scenes/BootScene";
 import GameScene from "./scenes/GameScene";
@@ -14,6 +15,9 @@ const game = new Phaser.Game({
     arcade: {
       gravity: { y: 0 },
     },
+  },
+  plugins: {
+    scene: [{ key: "gridEngine", plugin: GridEngine, mapping: "gridEngine" }],
   },
   backgroundColor: 0x26262d,
   parent: "app",
