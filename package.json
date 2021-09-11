@@ -1,0 +1,17 @@
+{
+  "name": "clean-rpg",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.2",
+    "vite": "^2.5.4"
+  },
+  "dependencies": {
+    "nanoid": "^3.1.25",
+    "phaser": "^3.55.2"
+  }
+}
