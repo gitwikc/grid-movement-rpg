@@ -1,13 +1,4 @@
-import GridControls from "../util/GridControls";
-import GridPhysics from "../util/GridPhysics";
-import { Player } from "../util/Player";
-
 export default class GameScene extends Phaser.Scene {
-  static readonly TILE_SIZE = 48;
-
-  private gridControls!: GridControls;
-  private gridPhysics!: GridPhysics;
-
   constructor() {
     super({
       key: "GameScene",
@@ -51,17 +42,7 @@ export default class GameScene extends Phaser.Scene {
       gardenMap.widthInPixels,
       gardenMap.heightInPixels
     );
-
-    // Create Player object for playerSprite
-    const player = new Player(playerSprite, new Phaser.Math.Vector2(2, 6));
-
-    // Create grid controls and grid physics
-    this.gridPhysics = new GridPhysics(player);
-    this.gridControls = new GridControls(this.input, this.gridPhysics);
   }
 
-  update(time: number, delta: number) {
-    this.gridControls.update();
-    this.gridPhysics.update(delta);
-  }
+  update(time: number, delta: number) {}
 }
