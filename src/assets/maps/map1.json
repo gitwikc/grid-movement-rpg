@@ -8,6 +8,12 @@
          "id":1,
          "name":"background",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"ge_heightshift",
+                 "type":"int",
+                 "value":-2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":20,
@@ -20,6 +26,12 @@
          "id":3,
          "name":"garden",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"ge_heightshift",
+                 "type":"int",
+                 "value":-1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":20,
@@ -32,6 +44,12 @@
          "id":4,
          "name":"above-player",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"ge_heightshift",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":20,

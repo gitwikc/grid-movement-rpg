@@ -15,8 +15,8 @@
             "scale": 0.9351562499999999,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 438.96407685881377,
-                "y": 481.7376775271512
+                "x": 480.6683375104429,
+                "y": 479.59899749373443
             }
         },
         "map1.tmx#ground": {
@@ -30,8 +30,8 @@
             "scale": 0.9351562499999999,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 479.5989974937344,
-                "y": 479.59899749373443
+                "x": 480.6683375104429,
+                "y": 480.6683375104429
             }
         },
         "map2.tmx#furniture": {
@@ -44,7 +44,7 @@
             "scale": 0.5727588383838383,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 744.641499035547,
+                "x": 769.0845963075228,
                 "y": 673.0581427390466
             }
         },
@@ -55,7 +55,7 @@
             "scaleInDock": 1
         }
     },
-    "last.exportedFilePath": "D:/Sattwik/code/web/js/game-dev/phaser-grid-movement-rpg/src/assets/maps",
+    "last.exportedFilePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps",
     "last.imagePath": "D:/Sattwik/media/pics/designs/game-assets/modern-interior-assets_limezu_itch.io/Modern tiles_Free/Interiors_free/48x48",
     "map.height": 28,
     "map.lastUsedExportFilter": "JSON map files (*.json)",
@@ -69,7 +69,7 @@
         "test.tmx"
     ],
     "project": "maps.tiled-project",
-    "property.type": "bool",
+    "property.type": "int",
     "recentFiles": [
         "test.tmx",
         "map2.tmx",

@@ -1,22 +1,31 @@
 import { Direction, GridEngineConfig } from "grid-engine";
-import { Grid } from "matter";
+import { Direction as MyDirection } from "../util/Direction";
 
 export default class GameScene extends Phaser.Scene {
-  private playerSprite!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+  private playerSprite!: Phaser.GameObjects.Sprite;
   private map!: Phaser.Tilemaps.Tilemap;
+
+  private controls;
 
   constructor() {
     super({
       key: "GameScene",
-      active: false,
-      visible: false,
+    });
+  }
+
+  createControlKeys(): void {
+    this.controls = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
     });
   }
 
   createPlayerSprite(): void {
     // Create player sprite
-    this.playerSprite = this.physics.add.sprite(0, 0, "player-spritesheet", 0);
-    this.playerSprite.setDepth(3);
+    this.playerSprite = this.add.sprite(0, 0, "player-spritesheet", 0);
+    this.playerSprite.setDepth(0);
   }
 
   createMap(): void {
@@ -54,6 +63,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    this.createControlKeys();
     this.createPlayerSprite();
     this.createMap();
     this.setupCamera();
@@ -86,16 +96,25 @@ export default class GameScene extends Phaser.Scene {
               rightFoot: 5,
             },
           },
-          startPosition: { x: 9, y: 11 },
+          startPosition: { x: 16, y: 2 },
           facingDirection: Direction.DOWN,
-          collides: true,
+          collides: false,
         },
       ],
-      collisionTilePropertyName: "collides",
-      numberOfDirections: 4,
+      // collisionTilePropertyName: "collides",
     };
     this.gridEngine.create(this.map, gridEngineConfig);
   }
 
-  update(time: number, delta: number) {}
+  update(time: number, delta: number) {
+    if (this.controls.down.isDown) {
+      this.gridEngine.move("player", Direction.DOWN);
+    } else if (this.controls.up.isDown) {
+      this.gridEngine.move("player", Direction.UP);
+    } else if (this.controls.left.isDown) {
+      this.gridEngine.move("player", Direction.LEFT);
+    } else if (this.controls.right.isDown) {
+      this.gridEngine.move("player", Direction.RIGHT);
+    }
+  }
 }
