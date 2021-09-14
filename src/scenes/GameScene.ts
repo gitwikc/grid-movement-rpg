@@ -1,5 +1,4 @@
 import { Direction, GridEngineConfig } from "grid-engine";
-import { Direction as MyDirection } from "../util/Direction";
 
 export default class GameScene extends Phaser.Scene {
   private playerSprite!: Phaser.GameObjects.Sprite;
@@ -25,7 +24,7 @@ export default class GameScene extends Phaser.Scene {
   createPlayerSprite(): void {
     // Create player sprite
     this.playerSprite = this.add.sprite(0, 0, "player-spritesheet", 0);
-    this.playerSprite.setDepth(0);
+    this.playerSprite.setDepth(0); // Literally set to 0 but render over all other layers!
   }
 
   createMap(): void {
@@ -96,12 +95,12 @@ export default class GameScene extends Phaser.Scene {
               rightFoot: 5,
             },
           },
-          startPosition: { x: 16, y: 2 },
+          startPosition: { x: 16, y: 8 },
           facingDirection: Direction.DOWN,
-          collides: false,
+          collides: true,
         },
       ],
-      // collisionTilePropertyName: "collides",
+      collisionTilePropertyName: "collides",
     };
     this.gridEngine.create(this.map, gridEngineConfig);
   }
