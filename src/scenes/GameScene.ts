@@ -6,6 +6,8 @@ export default class GameScene extends Phaser.Scene {
 
   private controls;
 
+  private readonly CAMERA_FOLLOW_SPEED: number = 0.5;
+
   constructor() {
     super({
       key: "GameScene",
@@ -44,6 +46,10 @@ export default class GameScene extends Phaser.Scene {
   setupCamera(): void {
     // Configure camera to folow playerSprite
     this.cameras.main.startFollow(this.playerSprite);
+    this.cameras.main.setLerp(
+      this.CAMERA_FOLLOW_SPEED,
+      this.CAMERA_FOLLOW_SPEED
+    );
     this.cameras.main.setRoundPixels(true);
 
     // World and camera bounds
@@ -82,7 +88,7 @@ export default class GameScene extends Phaser.Scene {
             right: {
               leftFoot: 9,
               standing: 8,
-              rightFoot: 10,
+              rightFoot: 11,
             },
             down: {
               leftFoot: 3,

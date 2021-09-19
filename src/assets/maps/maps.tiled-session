@@ -6,6 +6,7 @@
     "activeFile": "map1.tmx",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1,
@@ -13,10 +14,10 @@
         },
         "map1.tmx": {
             "scale": 0.9351562499999999,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 480.6683375104429,
-                "y": 479.59899749373443
+                "x": 482.80701754385973,
+                "y": 481.7376775271512
             }
         },
         "map1.tmx#ground": {
@@ -30,8 +31,8 @@
             "scale": 0.9351562499999999,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 480.6683375104429,
-                "y": 480.6683375104429
+                "x": 479.5989974937344,
+                "y": 479.59899749373443
             }
         },
         "map2.tmx#furniture": {
@@ -44,8 +45,8 @@
             "scale": 0.5727588383838383,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 769.0845963075228,
-                "y": 673.0581427390466
+                "x": 767.3386607880959,
+                "y": 671.3122072196197
             }
         },
         "test.tmx#furniture": {
@@ -64,16 +65,14 @@
     "map.tileWidth": 48,
     "map.width": 32,
     "openFiles": [
+        "map1.tmx"
+    ],
+    "project": "maps.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
         "map1.tmx",
         "map2.tmx",
         "test.tmx"
-    ],
-    "project": "maps.tiled-project",
-    "property.type": "int",
-    "recentFiles": [
-        "test.tmx",
-        "map2.tmx",
-        "map1.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {

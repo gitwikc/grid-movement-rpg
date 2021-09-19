@@ -1314,7 +1314,7 @@
 289,290,289,290,289,290,289,290,289,290,289,290,289,290,289,290,289,290,289,290
 </data>
  </layer>
- <layer id="3" name="garden" width="20" height="20">
+ <layer id="3" name="bp_garden" width="20" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,26,27,28,29,53,
@@ -1338,7 +1338,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="4" name="above-player" width="20" height="20">
+ <layer id="4" name="ap_top" width="20" height="20">
+  <properties>
+   <property name="ge_alwaysTop" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,10,11,12,13,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
