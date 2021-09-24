@@ -5,6 +5,7 @@
   --color2: hsl(352, 89%, 65%);
 
   --bg-dark: hsl(240, 13%, 15%);
+  --game-font: "Press Start 2P";
 }
 
 body {
@@ -23,9 +24,66 @@ body {
   place-items: center;
 }
 
-canvas {
+/* canvas {
   width: 70%;
   max-width: 960px;
   border: solid 3px var(--color2);
   border-radius: 10px;
+} */
+
+/* Message box */
+/* #message_box {
+  display: none;
+  width: 580px;
+  height: 90px;
+  padding: 10px;
+
+  color: hsl(40, 40%, 70%);
+  font-family: var(--game-font);
+  font-size: 13px;
+
+  background-image: url("../src/assets/ui/msg-box.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+
+section#message {
+  font-family: "Press Start 2P";
+  display: none;
+
+  width: 620px;
+  height: 120px;
+}
+
+section#message > #speaker {
+  width: fit-content;
+  height: 16px;
+  margin: 0;
+
+  font-size: 0.5rem;
+  color: hsl(248, 44%, 13%);
+  background-color: rgb(236, 173, 78);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+
+  /* Clip path to create shape */
+  clip-path: polygon(0 0, 93% 0, 100% 40%, 100% 100%, 3% 100%, 0 60%);
+}
+
+section#message > p#content {
+  height: 90px;
+  margin: 0;
+  padding: 17px 12px;
+
+  background-image: url("./assets/ui/msg-box.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 615px 120px;
+
+  color: white;
+
+  font-size: 0.7rem;
 }

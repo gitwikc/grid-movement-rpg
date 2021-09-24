@@ -6,7 +6,7 @@ export default class GameScene extends Phaser.Scene {
 
   private controls;
 
-  private readonly CAMERA_FOLLOW_SPEED: number = 0.5;
+  private readonly CAMERA_FOLLOW_SPEED: number = 0.4;
 
   constructor() {
     super({
@@ -109,6 +109,40 @@ export default class GameScene extends Phaser.Scene {
       collisionTilePropertyName: "collides",
     };
     this.gridEngine.create(this.map, gridEngineConfig);
+
+    // Listen for position change
+    this.gridEngine
+      .positionChangeFinished()
+      .subscribe(({ charId, exitTile, enterTile }) => {
+        if (charId === "player") {
+          const facing = this.gridEngine.getFacingPosition("player");
+          console.log(`${charId} is facing ${JSON.stringify(facing)}`);
+
+          if (facing.x === 6 && facing.y === 11) {
+            this.scene.launch("Dialogue", {
+              meta: { root: this },
+              dialogueSets: [
+                {
+                  speaker: "May",
+                  content: ["Whoa! Look at that pot", "I wonder what's in it"],
+                },
+                {
+                  speaker: "Potter",
+                  content: [
+                    "Those are special ones that heal health by 3",
+                    "Each costs $5",
+                  ],
+                },
+                {
+                  speaker: "May",
+                  content: ["Noice", "(May come in handy later)"],
+                },
+              ],
+            });
+            this.scene.pause();
+          }
+        }
+      });
   }
 
   update(time: number, delta: number) {

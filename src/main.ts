@@ -2,6 +2,7 @@ import { GridEngine } from "grid-engine";
 import Phaser from "phaser";
 import BootScene from "./scenes/BootScene";
 import GameScene from "./scenes/GameScene";
+import Dialogue from "./util/Dialogue";
 
 const game = new Phaser.Game({
   width: 640,
@@ -10,6 +11,7 @@ const game = new Phaser.Game({
   dom: {
     createContainer: true,
   },
+  parent: "app",
   physics: {
     default: "arcade",
     arcade: {
@@ -19,9 +21,8 @@ const game = new Phaser.Game({
   plugins: {
     scene: [{ key: "gridEngine", plugin: GridEngine, mapping: "gridEngine" }],
   },
-  backgroundColor: 0x26262d,
-  parent: "app",
+  backgroundColor: 0x46c6f7,
   roundPixels: true,
   pixelArt: true,
-  scene: [BootScene, GameScene],
+  scene: [BootScene, GameScene, Dialogue],
 });
