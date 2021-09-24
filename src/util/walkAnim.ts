@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Direction } from "grid-engine";
 
 const playerWalkingAnimationMap = {

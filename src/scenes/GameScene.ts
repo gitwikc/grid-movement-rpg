@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Direction, GridEngineConfig } from "grid-engine";
 import playerWalkingAnimationMap from "../util/walkAnim";
 
@@ -12,7 +13,7 @@ export default class GameScene extends Phaser.Scene {
 
   private npcs!: { [key in NPCs]: Phaser.GameObjects.Sprite | null };
 
-  private controls;
+  private controls!: object;
 
   private readonly CAMERA_FOLLOW_SPEED: number = 0.4;
 

@@ -4,6 +4,7 @@ import BootScene from "./scenes/BootScene";
 import GameScene from "./scenes/GameScene";
 import Dialogue from "./util/Dialogue";
 
+// @ts-ignore
 const game = new Phaser.Game({
   width: 640,
   height: 480,
