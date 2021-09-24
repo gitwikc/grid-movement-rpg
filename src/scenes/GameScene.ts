@@ -1,10 +1,19 @@
+// @ts-nocheck
 import { Direction, GridEngineConfig } from "grid-engine";
+import playerWalkingAnimationMap from "../util/walkAnim";
+
+enum NPCs {
+  ash = "ash",
+  gary = "gary",
+}
 
 export default class GameScene extends Phaser.Scene {
   private playerSprite!: Phaser.GameObjects.Sprite;
   private map!: Phaser.Tilemaps.Tilemap;
 
-  private controls;
+  private npcs!: { [key in NPCs]: Phaser.GameObjects.Sprite | null };
+
+  private controls!: object;
 
   private readonly CAMERA_FOLLOW_SPEED: number = 0.4;
 
@@ -20,13 +29,21 @@ export default class GameScene extends Phaser.Scene {
       down: Phaser.Input.Keyboard.KeyCodes.S,
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
+      space: Phaser.Input.Keyboard.KeyCodes.SPACE,
     });
   }
 
   createPlayerSprite(): void {
     // Create player sprite
     this.playerSprite = this.add.sprite(0, 0, "player-spritesheet", 0);
-    this.playerSprite.setDepth(0); // Literally set to 0 but render over all other layers!
+  }
+
+  createNPCSprites(): void {
+    // Create Ash
+    this.npcs = {
+      ash: this.add.sprite(0, 0, "ash-spritesheet", 0).setScale(1.1),
+      gary: null,
+    };
   }
 
   createMap(): void {
@@ -70,6 +87,7 @@ export default class GameScene extends Phaser.Scene {
   create() {
     this.createControlKeys();
     this.createPlayerSprite();
+    this.createNPCSprites();
     this.createMap();
     this.setupCamera();
 
@@ -79,30 +97,17 @@ export default class GameScene extends Phaser.Scene {
         {
           id: "player",
           sprite: this.playerSprite,
-          walkingAnimationMapping: {
-            up: {
-              leftFoot: 15,
-              standing: 12,
-              rightFoot: 13,
-            },
-            right: {
-              leftFoot: 9,
-              standing: 8,
-              rightFoot: 11,
-            },
-            down: {
-              leftFoot: 3,
-              standing: 0,
-              rightFoot: 1,
-            },
-            left: {
-              leftFoot: 7,
-              standing: 4,
-              rightFoot: 5,
-            },
-          },
+          walkingAnimationMapping: playerWalkingAnimationMap,
           startPosition: { x: 16, y: 8 },
           facingDirection: Direction.DOWN,
+          collides: true,
+        },
+        {
+          id: "ash",
+          sprite: this.npcs.ash!,
+          walkingAnimationMapping: playerWalkingAnimationMap,
+          startPosition: { x: 13, y: 7 },
+          facingDirection: Direction.RIGHT,
           collides: true,
         },
       ],
@@ -143,6 +148,9 @@ export default class GameScene extends Phaser.Scene {
           }
         }
       });
+
+    // Ash follows player
+    this.gridEngine.follow("ash", "player", 1, true);
   }
 
   update(time: number, delta: number) {
@@ -154,6 +162,12 @@ export default class GameScene extends Phaser.Scene {
       this.gridEngine.move("player", Direction.LEFT);
     } else if (this.controls.right.isDown) {
       this.gridEngine.move("player", Direction.RIGHT);
+    }
+
+    if (this.controls.space.isDown) {
+      this.gridEngine.setSpeed("player", 7);
+    } else {
+      this.gridEngine.setSpeed("player", 4);
     }
   }
 }
