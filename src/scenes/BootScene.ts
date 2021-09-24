@@ -18,10 +18,18 @@ export default class BootScene extends Phaser.Scene {
     this.load.tilemapTiledJSON("test-tilemap", tiledTilemaps.test);
 
     // Load the player spritesheet
-    this.load.spritesheet("player-spritesheet", spritesheets.player, {
+    const characterFrame = {
       frameWidth: 64,
       frameHeight: 64,
-    });
+    };
+    this.load.spritesheet(
+      "player-spritesheet",
+      spritesheets.player,
+      characterFrame
+    );
+
+    // Load NPC spritesheets
+    this.load.spritesheet("ash-spritesheet", spritesheets.ash, characterFrame);
   }
 
   create() {
