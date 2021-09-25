@@ -39,11 +39,13 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createNPCSprites(): void {
-    // Create Ash
+    // Create NPC Sprites
     this.npcs = {
-      ash: this.add.sprite(0, 0, "ash-spritesheet", 0).setScale(1.1),
+      ash: this.add.sprite(0, 0, "ash-spritesheet", 0),
       gary: null,
     };
+
+    this.npcs.ash?.setScale(1.1);
   }
 
   createMap(): void {
@@ -84,13 +86,15 @@ export default class GameScene extends Phaser.Scene {
     );
   }
 
-  create() {
+  preload() {
     this.createControlKeys();
     this.createPlayerSprite();
     this.createNPCSprites();
     this.createMap();
     this.setupCamera();
+  }
 
+  create() {
     // GridEngine config
     const gridEngineConfig: GridEngineConfig = {
       characters: [
@@ -121,7 +125,7 @@ export default class GameScene extends Phaser.Scene {
       .subscribe(({ charId, exitTile, enterTile }) => {
         if (charId === "player") {
           const facing = this.gridEngine.getFacingPosition("player");
-          console.log(`${charId} is facing ${JSON.stringify(facing)}`);
+          // console.log(`${charId} is facing ${JSON.stringify(facing)}`);
 
           if (facing.x === 6 && facing.y === 11) {
             this.scene.launch("Dialogue", {
