@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES5",
     "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ESNext", "dom", "scripthost"],
-    "moduleResolution": "Node",
+    "module": "commonjs",
+    "lib": ["ES5", "dom", "scripthost"],
+    "moduleResolution": "node",
     "strict": true,
     "sourceMap": true,
     "resolveJsonModule": true,
