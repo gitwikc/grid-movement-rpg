@@ -29,7 +29,11 @@ export default class BootScene extends Phaser.Scene {
     );
 
     // Load NPC spritesheets
-    this.load.spritesheet("ash-spritesheet", spritesheets.ash, characterFrame);
+    this.load.spritesheet(
+      "ash-spritesheet",
+      spritesheets.player,
+      characterFrame
+    );
   }
 
   create() {

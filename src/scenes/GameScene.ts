@@ -44,8 +44,6 @@ export default class GameScene extends Phaser.Scene {
       ash: this.add.sprite(0, 0, "ash-spritesheet", 0),
       gary: null,
     };
-
-    this.npcs.ash?.setScale(1.1);
   }
 
   createMap(): void {
