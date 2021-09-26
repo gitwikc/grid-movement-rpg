@@ -86,8 +86,8 @@ export default class GameScene extends Phaser.Scene {
 
   preload() {
     this.createControlKeys();
-    this.createPlayerSprite();
     this.createNPCSprites();
+    this.createPlayerSprite();
     this.createMap();
     this.setupCamera();
   }
@@ -106,7 +106,7 @@ export default class GameScene extends Phaser.Scene {
         },
         {
           id: "ash",
-          sprite: this.npcs.ash!,
+          sprite: this.npcs.ash,
           walkingAnimationMapping: playerWalkingAnimationMap,
           startPosition: { x: 13, y: 7 },
           facingDirection: Direction.RIGHT,
