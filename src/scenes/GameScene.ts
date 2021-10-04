@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { Direction, GridEngineConfig } from "grid-engine";
+import getPlayerWalkingAnimationMap from "../util/walkAnim";
 import playerWalkingAnimationMap from "../util/walkAnim";
 
 enum NPCs {
@@ -39,9 +40,9 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createNPCSprites(): void {
-    // Create Ash
+    // Create NPC Sprites
     this.npcs = {
-      ash: this.add.sprite(0, 0, "ash-spritesheet", 0).setScale(1.1),
+      ash: this.add.sprite(0, 0, "ash-spritesheet", 0),
       gary: null,
     };
   }
@@ -84,28 +85,30 @@ export default class GameScene extends Phaser.Scene {
     );
   }
 
-  create() {
+  preload() {
     this.createControlKeys();
-    this.createPlayerSprite();
     this.createNPCSprites();
+    this.createPlayerSprite();
     this.createMap();
     this.setupCamera();
+  }
 
+  create() {
     // GridEngine config
     const gridEngineConfig: GridEngineConfig = {
       characters: [
         {
           id: "player",
           sprite: this.playerSprite,
-          walkingAnimationMapping: playerWalkingAnimationMap,
+          walkingAnimationMapping: getPlayerWalkingAnimationMap(0),
           startPosition: { x: 16, y: 8 },
           facingDirection: Direction.DOWN,
           collides: true,
         },
         {
           id: "ash",
-          sprite: this.npcs.ash!,
-          walkingAnimationMapping: playerWalkingAnimationMap,
+          sprite: this.npcs.ash,
+          walkingAnimationMapping: getPlayerWalkingAnimationMap(1),
           startPosition: { x: 13, y: 7 },
           facingDirection: Direction.RIGHT,
           collides: true,
@@ -121,7 +124,7 @@ export default class GameScene extends Phaser.Scene {
       .subscribe(({ charId, exitTile, enterTile }) => {
         if (charId === "player") {
           const facing = this.gridEngine.getFacingPosition("player");
-          console.log(`${charId} is facing ${JSON.stringify(facing)}`);
+          // console.log(`${charId} is facing ${JSON.stringify(facing)}`);
 
           if (facing.x === 6 && facing.y === 11) {
             this.scene.launch("Dialogue", {

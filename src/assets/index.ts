@@ -8,7 +8,8 @@ import Map2Tilemap from "./maps/map2.json";
 import TestTilemap from "./maps/test.json";
 
 import PlayerSpriteSheet from "./sprites/player.png";
-import AshSpriteSheet from "./sprites/ash-walking-fire-red.png";
+import AshSpriteSheet from "./sprites/ash.png";
+import CombinedSheet from "./sprites/spritesheet.png";
 
 export const tilesets = {
   ground: GroundTileset,
@@ -26,6 +27,7 @@ export const tiledTilemaps = {
 export const spritesheets = {
   player: PlayerSpriteSheet,
   ash: AshSpriteSheet,
+  combined: CombinedSheet,
 };
 
 // const ASSETS = "src/assets";
