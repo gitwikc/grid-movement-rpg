@@ -44,6 +44,12 @@
          "id":4,
          "name":"furniture2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"ge_alwaysTop",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":32,
@@ -56,6 +62,12 @@
          "id":5,
          "name":"furniture3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"ge_alwaysTop",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":32,

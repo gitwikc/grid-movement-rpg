@@ -2,26 +2,23 @@
 import { Direction, GridEngineConfig } from "grid-engine";
 import getPlayerWalkingAnimationMap from "../util/walkAnim";
 import playerWalkingAnimationMap from "../util/walkAnim";
-
-enum NPCs {
-  ash = "ash",
-  gary = "gary",
-}
+import * as gameKeys from "../util/gameKeys";
 
 export default class GameScene extends Phaser.Scene {
-  private playerSprite!: Phaser.GameObjects.Sprite;
-  private map!: Phaser.Tilemaps.Tilemap;
+  protected playerSprite: Phaser.GameObjects.Sprite;
+  protected npcs: { [key: string]: Phaser.GameObjects.Sprite | null };
+  protected map: Phaser.Tilemaps.Tilemap;
 
-  private npcs!: { [key in NPCs]: Phaser.GameObjects.Sprite | null };
-
-  private controls!: object;
+  private controls;
 
   private readonly CAMERA_FOLLOW_SPEED: number = 0.4;
 
-  constructor() {
-    super({
-      key: "GameScene",
-    });
+  constructor(
+    private sceneData: gameKeys.SceneData,
+    private playerSpriteData: gameKeys.SpriteData
+  ) {
+    super({ key: sceneData.key });
+    console.log(this.sceneData);
   }
 
   createControlKeys(): void {
@@ -36,23 +33,29 @@ export default class GameScene extends Phaser.Scene {
 
   createPlayerSprite(): void {
     // Create player sprite
-    this.playerSprite = this.add.sprite(0, 0, "player-spritesheet", 0);
+    this.playerSprite = this.add.sprite(
+      0,
+      0,
+      this.playerSpriteData.spritesheet.key,
+      0
+    );
   }
 
-  createNPCSprites(): void {
-    // Create NPC Sprites
-    this.npcs = {
-      ash: this.add.sprite(0, 0, "ash-spritesheet", 0),
-      gary: null,
-    };
-  }
+  /**
+   * This is gonna be overridden
+   */
+  createNPCSprites(): void {}
 
   createMap(): void {
     // Create map and tilesets for scene
-    this.map = this.make.tilemap({ key: "map1-tilemap" });
+    this.map = this.make.tilemap({ key: this.sceneData.tilemapKey });
+
+    // Just loading up all tileset imags available
     const tilesets = [
-      this.map.addTilesetImage("ground", "ground-tileset"),
-      this.map.addTilesetImage("things", "things-tileset"),
+      this.map.addTilesetImage("ground", gameKeys.tilesetImages.ground),
+      this.map.addTilesetImage("things", gameKeys.tilesetImages.things),
+      this.map.addTilesetImage("furniture", gameKeys.tilesetImages.interior),
+      this.map.addTilesetImage("room", gameKeys.tilesetImages.roomBuilder),
     ];
 
     // Create layers from map
@@ -86,36 +89,36 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.createControlKeys();
-    this.createNPCSprites();
-    this.createPlayerSprite();
-    this.createMap();
-    this.setupCamera();
+    this.createControlKeys(); // Same for all scenes
+    this.createNPCSprites(); // Overridden
+    this.createPlayerSprite(); // Same for all sprites
+    this.createMap(); // Same for all
+    this.setupCamera(); // Same for all scenes
   }
 
-  create() {
+  create(gridEngineConfig: GridEngineConfig) {
     // GridEngine config
-    const gridEngineConfig: GridEngineConfig = {
-      characters: [
-        {
-          id: "player",
-          sprite: this.playerSprite,
-          walkingAnimationMapping: getPlayerWalkingAnimationMap(0),
-          startPosition: { x: 16, y: 8 },
-          facingDirection: Direction.DOWN,
-          collides: true,
-        },
-        {
-          id: "ash",
-          sprite: this.npcs.ash,
-          walkingAnimationMapping: getPlayerWalkingAnimationMap(1),
-          startPosition: { x: 13, y: 7 },
-          facingDirection: Direction.RIGHT,
-          collides: true,
-        },
-      ],
-      collisionTilePropertyName: "collides",
-    };
+    // const usedToBeTheGEConfig = {
+    //   characters: [
+    //     {
+    //       id: gameKeys.spritesheets.player.name,
+    //       sprite: this.playerSprite,
+    //       walkingAnimationMapping: getPlayerWalkingAnimationMap(0),
+    //       startPosition: { x: 16, y: 8 },
+    //       facingDirection: Direction.DOWN,
+    //       collides: true,
+    //     },
+    //     {
+    //       id: gameKeys.spritesheets.ash.name,
+    //       sprite: this.npcs.ash,
+    //       walkingAnimationMapping: getPlayerWalkingAnimationMap(1),
+    //       startPosition: { x: 13, y: 7 },
+    //       facingDirection: Direction.RIGHT,
+    //       collides: true,
+    //     },
+    //   ],
+    //   collisionTilePropertyName: "collides",
+    // };
     this.gridEngine.create(this.map, gridEngineConfig);
 
     // Listen for position change
@@ -152,19 +155,25 @@ export default class GameScene extends Phaser.Scene {
         }
       });
 
+    // Do this stuff in the child class
     // Ash follows player
-    this.gridEngine.follow("ash", "player", 1, true);
+    // this.gridEngine.follow(
+    //   gameKeys.spritesheets.ash.name,
+    //   gameKeys.spritesheets.player.name,
+    //   1,
+    //   true
+    // );
   }
 
   update(time: number, delta: number) {
     if (this.controls.down.isDown) {
-      this.gridEngine.move("player", Direction.DOWN);
+      this.gridEngine.move(this.playerSpriteData.name, Direction.DOWN);
     } else if (this.controls.up.isDown) {
-      this.gridEngine.move("player", Direction.UP);
+      this.gridEngine.move(this.playerSpriteData.name, Direction.UP);
     } else if (this.controls.left.isDown) {
-      this.gridEngine.move("player", Direction.LEFT);
+      this.gridEngine.move(this.playerSpriteData.name, Direction.LEFT);
     } else if (this.controls.right.isDown) {
-      this.gridEngine.move("player", Direction.RIGHT);
+      this.gridEngine.move(this.playerSpriteData.name, Direction.RIGHT);
     }
 
     if (this.controls.space.isDown) {

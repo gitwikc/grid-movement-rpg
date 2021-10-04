@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="28" tilewidth="48" tileheight="48" infinite="0" nextlayerid="6" nextobjectid="1">
+ <editorsettings>
+  <export target="test.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" name="room" tilewidth="48" tileheight="48" tilecount="391" columns="17">
   <image source="../../../../../../../../media/pics/designs/game-assets/modern-interior-assets_limezu_itch.io/Modern tiles_Free/Interiors_free/48x48/Room_Builder_free_48x48.png" width="816" height="1104"/>
  </tileset>
@@ -288,6 +291,9 @@
 </data>
  </layer>
  <layer id="4" name="furniture2" width="32" height="28">
+  <properties>
+   <property name="ge_alwaysTop" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -320,6 +326,9 @@
 </data>
  </layer>
  <layer id="5" name="furniture3" width="32" height="28">
+  <properties>
+   <property name="ge_alwaysTop" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
