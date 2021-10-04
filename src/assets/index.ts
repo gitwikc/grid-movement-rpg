@@ -9,6 +9,7 @@ import TestTilemap from "./maps/test.json";
 
 import PlayerSpriteSheet from "./sprites/player.png";
 import AshSpriteSheet from "./sprites/ash.png";
+import CombinedSheet from "./sprites/spritesheet.png";
 
 export const tilesets = {
   ground: GroundTileset,
@@ -26,6 +27,7 @@ export const tiledTilemaps = {
 export const spritesheets = {
   player: PlayerSpriteSheet,
   ash: AshSpriteSheet,
+  combined: CombinedSheet,
 };
 
 // const ASSETS = "src/assets";

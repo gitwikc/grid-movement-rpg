@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { Direction, GridEngineConfig } from "grid-engine";
+import getPlayerWalkingAnimationMap from "../util/walkAnim";
 import playerWalkingAnimationMap from "../util/walkAnim";
 
 enum NPCs {
@@ -99,7 +100,7 @@ export default class GameScene extends Phaser.Scene {
         {
           id: "player",
           sprite: this.playerSprite,
-          walkingAnimationMapping: playerWalkingAnimationMap,
+          walkingAnimationMapping: getPlayerWalkingAnimationMap(0),
           startPosition: { x: 16, y: 8 },
           facingDirection: Direction.DOWN,
           collides: true,
@@ -107,7 +108,7 @@ export default class GameScene extends Phaser.Scene {
         {
           id: "ash",
           sprite: this.npcs.ash,
-          walkingAnimationMapping: playerWalkingAnimationMap,
+          walkingAnimationMapping: getPlayerWalkingAnimationMap(1),
           startPosition: { x: 13, y: 7 },
           facingDirection: Direction.RIGHT,
           collides: true,

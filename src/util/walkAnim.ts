@@ -1,27 +1,27 @@
 // @ts-ignore
 import { Direction } from "grid-engine";
 
-const playerWalkingAnimationMap = {
+const getPlayerWalkingAnimationMap = (playerIndex: number = 0) => ({
   up: {
-    leftFoot: 15,
-    standing: 12,
-    rightFoot: 13,
+    leftFoot: playerIndex * 16 + 15,
+    standing: playerIndex * 16 + 12,
+    rightFoot: playerIndex * 16 + 13,
   },
   right: {
-    leftFoot: 9,
-    standing: 8,
-    rightFoot: 11,
+    leftFoot: playerIndex * 16 + 9,
+    standing: playerIndex * 16 + 8,
+    rightFoot: playerIndex * 16 + 11,
   },
   down: {
-    leftFoot: 3,
-    standing: 0,
-    rightFoot: 1,
+    leftFoot: playerIndex * 16 + 3,
+    standing: playerIndex * 16 + 0,
+    rightFoot: playerIndex * 16 + 1,
   },
   left: {
-    leftFoot: 7,
-    standing: 4,
-    rightFoot: 5,
+    leftFoot: playerIndex * 16 + 7,
+    standing: playerIndex * 16 + 4,
+    rightFoot: playerIndex * 16 + 5,
   },
-};
+});
 
-export default playerWalkingAnimationMap;
+export default getPlayerWalkingAnimationMap;
