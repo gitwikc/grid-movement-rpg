@@ -5,23 +5,23 @@ import * as gameKeys from "../util/gameKeys";
 import { Direction, GridEngineConfig } from "grid-engine";
 import getPlayerWalkingAnimationMap from "../util/walkAnim";
 
-export default class GardenScene extends GameScene {
+export default class ClassroomScene extends GameScene {
   constructor() {
-    super(gameKeys.scenes.garden, {
+    super(gameKeys.scenes.classroom, {
       name: "player",
       spritesheet: gameKeys.spritesheets.player,
     });
   }
 
   createNPCSprites() {
-    // TODO Init list of npc sprites
     this.npcs = {
-      ash: this.add.sprite(0, 0, gameKeys.spritesheets.ash.key),
+      ash: this.add
+        .sprite(0, 0, gameKeys.spritesheets.ash.key, 0)
+        .setScale(1.1),
     };
   }
 
   create() {
-    // TODO Create gridEngineConfig
     this.createNPCSprites();
     const gridEngineConfig: GridEngineConfig = {
       characters: [
@@ -29,21 +29,20 @@ export default class GardenScene extends GameScene {
           id: "ash",
           sprite: this.npcs.ash!,
           collides: true,
+          startPosition: { x: 0, y: 0 },
           speed: 4,
-          facingDirection: Direction.DOWN,
           walkingAnimationMapping: getPlayerWalkingAnimationMap(
             gameKeys.spritesheets.ash.index
           ),
+          facingDirection: Direction.DOWN,
         },
       ],
       collisionTilePropertyName: "collides",
     };
+
     super.create(gridEngineConfig);
-    /* Extra stuff for gridEngine like
-     * NPC follows player
-     * Random movement of NPCs
-     */
-    // const { x: playerX, y: playerY } = this.gridEngine.getPosition("player");
+
+    // Ash follows player
     this.gridEngine.setPosition("ash", this.gridEngine.getPosition("player"));
     this.gridEngine.follow("ash", "player", 1, true);
   }

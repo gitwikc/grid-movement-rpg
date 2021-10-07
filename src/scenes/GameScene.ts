@@ -1,13 +1,24 @@
 // @ts-nocheck
-import { Direction, GridEngineConfig } from "grid-engine";
+import {
+  CharacterData,
+  Direction,
+  GridEngineConfig,
+  Position,
+} from "grid-engine";
 import getPlayerWalkingAnimationMap from "../util/walkAnim";
 import playerWalkingAnimationMap from "../util/walkAnim";
 import * as gameKeys from "../util/gameKeys";
+import { Door, getDoorsForScene } from "../util/doors";
 
 export default class GameScene extends Phaser.Scene {
   protected playerSprite: Phaser.GameObjects.Sprite;
   protected npcs: { [key: string]: Phaser.GameObjects.Sprite | null };
   protected map: Phaser.Tilemaps.Tilemap;
+
+  protected spawnPosition: Position = { x: 0, y: 0 };
+  protected spawnDirection: Direction = Direction.DOWN;
+
+  protected doors: Door[];
 
   private controls;
 
@@ -19,6 +30,14 @@ export default class GameScene extends Phaser.Scene {
   ) {
     super({ key: sceneData.key });
     console.log(this.sceneData);
+
+    // Get the doors for the scene
+    this.doors = getDoorsForScene(sceneData.key);
+  }
+
+  init(spawnPosition, direction) {
+    this.spawnPosition = spawnPosition;
+    this.spawnDirection = direction;
   }
 
   createControlKeys(): void {
@@ -90,79 +109,39 @@ export default class GameScene extends Phaser.Scene {
 
   preload() {
     this.createControlKeys(); // Same for all scenes
-    this.createNPCSprites(); // Overridden
+    // this.createNPCSprites(); Called in child class
     this.createPlayerSprite(); // Same for all sprites
     this.createMap(); // Same for all
     this.setupCamera(); // Same for all scenes
   }
 
   create(gridEngineConfig: GridEngineConfig) {
-    // GridEngine config
-    // const usedToBeTheGEConfig = {
-    //   characters: [
-    //     {
-    //       id: gameKeys.spritesheets.player.name,
-    //       sprite: this.playerSprite,
-    //       walkingAnimationMapping: getPlayerWalkingAnimationMap(0),
-    //       startPosition: { x: 16, y: 8 },
-    //       facingDirection: Direction.DOWN,
-    //       collides: true,
-    //     },
-    //     {
-    //       id: gameKeys.spritesheets.ash.name,
-    //       sprite: this.npcs.ash,
-    //       walkingAnimationMapping: getPlayerWalkingAnimationMap(1),
-    //       startPosition: { x: 13, y: 7 },
-    //       facingDirection: Direction.RIGHT,
-    //       collides: true,
-    //     },
-    //   ],
-    //   collisionTilePropertyName: "collides",
-    // };
+    this.cameras.main.fadeIn(300);
+
+    // Add the player character (same for all scenes, do it here)
+    const playerCharacter: CharacterData = {
+      id: this.playerSpriteData.name,
+      sprite: this.playerSprite,
+      speed: 4,
+      collides: true,
+      startPosition: this.spawnPosition,
+      facingDirection: this.spawnDirection,
+      walkingAnimationMapping: getPlayerWalkingAnimationMap(
+        this.playerSpriteData.spritesheet.index
+      ),
+    };
+    gridEngineConfig.characters.push(playerCharacter);
     this.gridEngine.create(this.map, gridEngineConfig);
 
     // Listen for position change
     this.gridEngine
       .positionChangeFinished()
-      .subscribe(({ charId, exitTile, enterTile }) => {
-        if (charId === "player") {
-          const facing = this.gridEngine.getFacingPosition("player");
-          // console.log(`${charId} is facing ${JSON.stringify(facing)}`);
-
-          if (facing.x === 6 && facing.y === 11) {
-            this.scene.launch("Dialogue", {
-              meta: { root: this },
-              dialogueSets: [
-                {
-                  speaker: "May",
-                  content: ["Whoa! Look at that pot", "I wonder what's in it"],
-                },
-                {
-                  speaker: "Potter",
-                  content: [
-                    "Those are special ones that heal health by 3",
-                    "Each costs $5",
-                  ],
-                },
-                {
-                  speaker: "May",
-                  content: ["Noice", "(May come in handy later)"],
-                },
-              ],
-            });
-            this.scene.pause();
-          }
-        }
-      });
-
-    // Do this stuff in the child class
-    // Ash follows player
-    // this.gridEngine.follow(
-    //   gameKeys.spritesheets.ash.name,
-    //   gameKeys.spritesheets.player.name,
-    //   1,
-    //   true
-    // );
+      .subscribe(({ charId, exitTile, enterTile }) =>
+        this.checkDialogueDoor(charId)
+      );
+    this.gridEngine
+      .directionChanged()
+      .subscribe(({ charId, direction }) => this.checkDialogueDoor(charId));
   }
 
   update(time: number, delta: number) {
@@ -177,9 +156,48 @@ export default class GameScene extends Phaser.Scene {
     }
 
     if (this.controls.space.isDown) {
-      this.gridEngine.setSpeed("player", 7);
+      this.gridEngine.setSpeed(this.playerSpriteData.name, 7);
     } else {
-      this.gridEngine.setSpeed("player", 4);
+      this.gridEngine.setSpeed(this.playerSpriteData.name, 4);
+    }
+  }
+
+  /**
+   * Finds the door at a position in the scene
+   * @param position The position at which the door is to be found in this scene
+   * @returns A Door object, if any found
+   */
+  getDoorAtPosition(position: Position): Door | undefined {
+    return this.doors?.filter(
+      (door) => door.position.x === position.x && door.position.y === position.y
+    )[0];
+  }
+
+  /**
+   * Checks for the dialogue/door at the current facing
+   * position of the player
+   */
+  checkDialogueDoor(charId: string) {
+    if (charId === this.playerSpriteData.name) {
+      //  Player character alwaya named player
+      const playerFacingPosition = this.gridEngine.getFacingPosition(
+        this.playerSpriteData.name
+      );
+      // console.log(playerFacingPosition);
+
+      // TODO Check if a dialogue should be said
+
+      // TODO Check if player @ door, open the other scene
+      const doorAtCurrentPosition =
+        this.getDoorAtPosition(playerFacingPosition);
+      if (doorAtCurrentPosition) {
+        const { dest } = doorAtCurrentPosition;
+
+        this.cameras.main.fadeOut(300, 0, 0, 0, () => {
+          this.scene.start(dest.sceneKey, dest.position);
+          this.scene.stop();
+        });
+      }
     }
   }
 }

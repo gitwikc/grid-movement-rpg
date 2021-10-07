@@ -1,3 +1,5 @@
+import { Direction, Position } from "grid-engine";
+
 export interface SpritesheetData {
   key: string;
   index: number;
