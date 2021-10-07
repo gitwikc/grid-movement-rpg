@@ -4,3 +4,5 @@ dist
 dist-ssr
 *.local
 test
+./src/assets/maps/maps.tiled-project
+./src/assets/maps/maps.tiled-session
