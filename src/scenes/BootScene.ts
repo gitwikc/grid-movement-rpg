@@ -1,4 +1,6 @@
+import { Position } from "grid-engine";
 import { spritesheets, tiledTilemaps, tilesets } from "../assets";
+import * as gameKeys from "../util/gameKeys";
 // import AshSpriteSheet from "../assets/sprites/ash.png";
 
 export default class BootScene extends Phaser.Scene {
@@ -8,34 +10,46 @@ export default class BootScene extends Phaser.Scene {
 
   preload() {
     // Load tileset images
-    this.load.image("ground-tileset", tilesets.ground);
-    this.load.image("interior-tileset", tilesets.interior);
-    this.load.image("room-builder-tileset", tilesets.roomBuilder);
-    this.load.image("things-tileset", tilesets.things);
+    this.load.image(gameKeys.tilesetImages.ground, tilesets.ground);
+    this.load.image(gameKeys.tilesetImages.interior, tilesets.interior);
+    this.load.image(gameKeys.tilesetImages.roomBuilder, tilesets.roomBuilder);
+    this.load.image(gameKeys.tilesetImages.things, tilesets.things);
 
     // Load Tiled tilemap JSONs
-    this.load.tilemapTiledJSON("map1-tilemap", tiledTilemaps.map1);
-    this.load.tilemapTiledJSON("map2-tilemap", tiledTilemaps.map2);
-    this.load.tilemapTiledJSON("test-tilemap", tiledTilemaps.test);
+    this.load.tilemapTiledJSON(gameKeys.tilemaps.map1, tiledTilemaps.map1);
+    this.load.tilemapTiledJSON(gameKeys.tilemaps.map2, tiledTilemaps.map2);
+    this.load.tilemapTiledJSON(gameKeys.tilemaps.test, tiledTilemaps.test);
 
     // Load the player spritesheet
     const characterFrame = {
       frameWidth: 64,
       frameHeight: 64,
     };
-    this.load.spritesheet("ash-spritesheet", spritesheets.combined, {
-      ...characterFrame,
-      startFrame: 15,
-      endFrame: 31,
-    });
-    this.load.spritesheet("player-spritesheet", spritesheets.combined, {
-      ...characterFrame,
-      startFrame: 0,
-      endFrame: 15,
-    });
+    this.load.spritesheet(
+      gameKeys.spritesheets.ash.key,
+      spritesheets.combined,
+      {
+        ...characterFrame,
+        startFrame: 15,
+        endFrame: 31,
+      }
+    );
+    this.load.spritesheet(
+      gameKeys.spritesheets.player.key,
+      spritesheets.combined,
+      {
+        ...characterFrame,
+        startFrame: 0,
+        endFrame: 15,
+      }
+    );
   }
 
   create() {
-    this.scene.start("GameScene");
+    const spawnPosition: Position = {
+      x: 16,
+      y: 14,
+    };
+    this.scene.start(gameKeys.scenes.library.key, spawnPosition);
   }
 }

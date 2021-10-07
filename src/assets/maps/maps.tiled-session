@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "map1.tmx",
+    "activeFile": "test.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -16,7 +16,7 @@
             "scale": 0.9351562499999999,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 482.80701754385973,
+                "x": 484.9456975772766,
                 "y": 481.7376775271512
             }
         },
@@ -32,7 +32,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 479.5989974937344,
-                "y": 479.59899749373443
+                "y": 481.7376775271512
             }
         },
         "map2.tmx#furniture": {
@@ -45,8 +45,8 @@
             "scale": 0.5727588383838383,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 767.3386607880959,
-                "y": 671.3122072196197
+                "x": 769.0845963075228,
+                "y": 673.0581427390466
             }
         },
         "test.tmx#furniture": {
@@ -65,7 +65,9 @@
     "map.tileWidth": 48,
     "map.width": 32,
     "openFiles": [
-        "map1.tmx"
+        "map1.tmx",
+        "map2.tmx",
+        "test.tmx"
     ],
     "project": "maps.tiled-project",
     "property.type": "bool",
