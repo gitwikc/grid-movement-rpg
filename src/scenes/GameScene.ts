@@ -9,6 +9,7 @@ import getPlayerWalkingAnimationMap from "../util/walkAnim";
 import playerWalkingAnimationMap from "../util/walkAnim";
 import * as gameKeys from "../util/gameKeys";
 import { Door, getDoorsForScene } from "../util/doors";
+import sceneStore from "../util/stores/sceneStore";
 
 export default class GameScene extends Phaser.Scene {
   protected playerSprite: Phaser.GameObjects.Sprite;
@@ -19,6 +20,8 @@ export default class GameScene extends Phaser.Scene {
   protected spawnDirection: Direction = Direction.DOWN;
 
   protected doors: Door[];
+
+  protected sceneStore = sceneStore.getState;
 
   private controls;
 
@@ -38,6 +41,9 @@ export default class GameScene extends Phaser.Scene {
   init(spawnPosition, direction) {
     this.spawnPosition = spawnPosition;
     this.spawnDirection = direction;
+
+    // console.log(typeof this.sceneStore.setCurrentScene);
+    this.sceneStore().setCurrentScene(this.scene.key);
   }
 
   createControlKeys(): void {
@@ -137,11 +143,14 @@ export default class GameScene extends Phaser.Scene {
     this.gridEngine
       .positionChangeFinished()
       .subscribe(({ charId, exitTile, enterTile }) =>
-        this.checkDialogueDoor(charId)
+        this.checkDialogueDoor({ charId, exitTile, enterTile })
       );
-    this.gridEngine
-      .directionChanged()
-      .subscribe(({ charId, direction }) => this.checkDialogueDoor(charId));
+    this.gridEngine.directionChanged().subscribe(({ charId, direction }) =>
+      this.checkDialogueDoor({
+        charId,
+        direction,
+      })
+    );
   }
 
   update(time: number, delta: number) {
@@ -177,13 +186,27 @@ export default class GameScene extends Phaser.Scene {
    * Checks for the dialogue/door at the current facing
    * position of the player
    */
-  checkDialogueDoor(charId: string) {
+  checkDialogueDoor({
+    charId,
+    exitTile,
+    enterTile,
+    direction,
+  }: {
+    charId: string;
+    exitTile?: Position;
+    enterTile?: Position;
+    direction?: Direction;
+  }) {
     if (charId === this.playerSpriteData.name) {
-      //  Player character alwaya named player
+      // Update player position in state
+      if (enterTile) {
+        this.sceneStore().setPlayerPosition(enterTile);
+      }
+
       const playerFacingPosition = this.gridEngine.getFacingPosition(
         this.playerSpriteData.name
       );
-      // console.log(playerFacingPosition);
+      this.sceneStore().setPlayerFacingPosition(playerFacingPosition);
 
       // TODO Check if a dialogue should be said
 
