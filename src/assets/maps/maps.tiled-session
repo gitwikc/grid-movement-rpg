@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "test.tmx",
+    "activeFile": "map2.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -73,8 +73,8 @@
     "property.type": "bool",
     "recentFiles": [
         "map1.tmx",
-        "map2.tmx",
-        "test.tmx"
+        "test.tmx",
+        "map2.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
