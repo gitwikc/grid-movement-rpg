@@ -1,5 +1,6 @@
 import { Direction, Position } from "grid-engine";
 import * as gameKeys from "../util/gameKeys";
+import { GameState } from "./stores/gameStore";
 
 export interface Door {
   position: Position;
@@ -8,6 +9,7 @@ export interface Door {
     position: Position;
     direction: Direction;
   };
+  updateState?: (state: GameState) => void;
 }
 
 export interface SceneDoor {
@@ -21,10 +23,12 @@ const createDoor = (
   destSceneKey: string,
   x1: number,
   y1: number,
-  direction: Direction = Direction.DOWN
+  direction: Direction = Direction.DOWN,
+  updateState?: (state: GameState) => void
 ): Door => ({
   position: { x: x0, y: y0 },
   dest: { sceneKey: destSceneKey, position: { x: x1, y: y1 }, direction },
+  updateState,
 });
 
 const createDoors = (

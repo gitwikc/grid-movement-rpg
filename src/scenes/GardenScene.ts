@@ -1,16 +1,56 @@
 // @ts-nocheck
-
 import GameScene from "./GameScene";
 import * as gameKeys from "../util/gameKeys";
 import { Direction, GridEngineConfig } from "grid-engine";
 import getPlayerWalkingAnimationMap from "../util/walkAnim";
+import { charactersAreColliding } from "../util/helpers";
+import { CharacterInteractions } from "../util/interactions";
+import { Objective } from "../util/stores/gameStore";
+
+const characterInteractions: CharacterInteractions = {
+  ash: (scene, state) => {
+    if (!state.objectives.MEET_ASH) {
+      state.completeObjective(Objective.MEET_ASH);
+      return {
+        dialogueSets: [
+          {
+            speaker: "ash",
+            content: [
+              "Excuse me, have you seen a flip phone somewhere?",
+              "It's my lucky charm and I seem to have lost it",
+              "Surely, I had it in my pocket in the morning...",
+            ],
+          },
+          {
+            speaker: "player",
+            content: [
+              "Well, I have some time before class starts.",
+              "I could help you find it",
+            ],
+          },
+          {
+            speaker: "ash",
+            content: ["Oh, thank you! Let's search together"],
+          },
+        ],
+        callback: () => {
+          scene.gridEngine.follow("ash", "player", 1, true);
+        },
+      };
+    }
+  },
+};
 
 export default class GardenScene extends GameScene {
   constructor() {
-    super(gameKeys.scenes.garden, {
-      name: "player",
-      spritesheet: gameKeys.spritesheets.player,
-    });
+    super(
+      gameKeys.scenes.garden,
+      {
+        name: "player",
+        spritesheet: gameKeys.spritesheets.player,
+      },
+      characterInteractions
+    );
   }
 
   createNPCSprites() {
@@ -30,6 +70,7 @@ export default class GardenScene extends GameScene {
           sprite: this.npcs.ash!,
           collides: true,
           speed: 4,
+          startPosition: { x: 15, y: 7 },
           facingDirection: Direction.DOWN,
           walkingAnimationMapping: getPlayerWalkingAnimationMap(
             gameKeys.spritesheets.ash.index
@@ -43,8 +84,9 @@ export default class GardenScene extends GameScene {
      * NPC follows player
      * Random movement of NPCs
      */
-    // const { x: playerX, y: playerY } = this.gridEngine.getPosition("player");
-    this.gridEngine.setPosition("ash", this.gridEngine.getPosition("player"));
-    this.gridEngine.follow("ash", "player", 1, true);
+    if (this.gameStore().objectives.MEET_ASH) {
+      this.gridEngine.setPosition("ash", this.gridEngine.getPosition("player"));
+      this.gridEngine.follow("ash", "player", 1, true);
+    }
   }
 }

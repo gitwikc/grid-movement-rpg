@@ -10,6 +10,10 @@ import playerWalkingAnimationMap from "../util/walkAnim";
 import * as gameKeys from "../util/gameKeys";
 import { Door, getDoorsForScene } from "../util/doors";
 import sceneStore from "../util/stores/sceneStore";
+import gameStore from "../util/stores/gameStore";
+import { CharacterInteractions, getInteractionFor } from "../util/interactions";
+import { dialogueSet } from "./Dialogue";
+import { charactersAreColliding, charactersF2F } from "../util/helpers";
 
 export default class GameScene extends Phaser.Scene {
   protected playerSprite: Phaser.GameObjects.Sprite;
@@ -22,6 +26,7 @@ export default class GameScene extends Phaser.Scene {
   protected doors: Door[];
 
   protected sceneStore = sceneStore.getState;
+  protected gameStore = gameStore.getState;
 
   private controls;
 
@@ -29,7 +34,8 @@ export default class GameScene extends Phaser.Scene {
 
   constructor(
     private sceneData: gameKeys.SceneData,
-    private playerSpriteData: gameKeys.SpriteData
+    private playerSpriteData: gameKeys.SpriteData,
+    private characterInteractions?: CharacterInteractions
   ) {
     super({ key: sceneData.key });
     console.log(this.sceneData);
@@ -209,6 +215,15 @@ export default class GameScene extends Phaser.Scene {
       this.sceneStore().setPlayerFacingPosition(playerFacingPosition);
 
       // TODO Check if a dialogue should be said
+      const interaction = getInteractionFor(
+        this.scene.key,
+        playerFacingPosition
+      );
+      if (interaction)
+        this.launchDialogue(interaction.getDialogues(gameStore.getState()));
+
+      // Check for character interaction
+      if (this.characterInteractions) this.checkCharacterInteractions();
 
       // TODO Check if player @ door, open the other scene
       const doorAtCurrentPosition =
@@ -222,5 +237,33 @@ export default class GameScene extends Phaser.Scene {
         });
       }
     }
+  }
+
+  checkCharacterInteractions() {
+    console.log(this.characterInteractions);
+    this.gridEngine.getAllCharacters().forEach((charId: string) => {
+      if (
+        charactersAreColliding(this.playerSpriteData.name, charId, this) &&
+        this.characterInteractions[charId]
+      ) {
+        const characterInteraction = this.characterInteractions[charId](
+          this,
+          this.gameStore()
+        );
+        if (characterInteraction.dialogueSets) {
+          charactersF2F(this, this.playerSpriteData.name, charId);
+          this.launchDialogue(characterInteraction.dialogueSets);
+        }
+        if (characterInteraction.callback) characterInteraction.callback();
+      }
+    });
+  }
+
+  launchDialogue(dialogueSets: dialogueSet[]) {
+    this.scene.launch("Dialogue", {
+      dialogueSets,
+      meta: { root: this.scene.key },
+    });
+    this.scene.pause();
   }
 }

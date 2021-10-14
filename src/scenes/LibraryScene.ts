@@ -42,7 +42,9 @@ export default class LibraryScene extends GameScene {
     super.create(gridEngineConfig);
 
     // Ash follows player
-    this.gridEngine.setPosition("ash", this.gridEngine.getPosition("player"));
-    this.gridEngine.follow("ash", "player", 1, true);
+    if (this.gameStore().objectives.MEET_ASH) {
+      this.gridEngine.setPosition("ash", this.gridEngine.getPosition("player"));
+      this.gridEngine.follow("ash", "player", 1, true);
+    }
   }
 }

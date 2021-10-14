@@ -1,9 +1,9 @@
-interface dialogueSet {
+export interface dialogueSet {
   speaker: string;
   content: string[];
 }
 
-interface dialogue {
+export interface dialogue {
   speaker: string;
   content: string;
 }
