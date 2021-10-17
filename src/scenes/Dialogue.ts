@@ -31,6 +31,8 @@ export default class Dialogue extends Phaser.Scene {
   private dialogueSets: dialogueSet[] = [];
   private conversation: dialogue[] = [];
 
+  private speaking!: boolean;
+
   // Stores index of the current dialogue being spoken
   private dialogueIndex!: number;
   // Stores the start time of the current dialogue
@@ -73,6 +75,7 @@ export default class Dialogue extends Phaser.Scene {
     const currentDialogueText = this.conversation[this.dialogueIndex].content;
     const timeSpoken = time - this.currentDialogueStartTime;
     const charsToPrint = Math.min(currentDialogueText.length, timeSpoken / 20);
+    this.speaking = charsToPrint < currentDialogueText.length - 1;
     this.domElem.content.innerHTML = currentDialogueText.substring(
       0,
       charsToPrint
@@ -84,10 +87,11 @@ export default class Dialogue extends Phaser.Scene {
     this.currentDialogueStartTime = this.game.getTime();
 
     this.domElem.box.onclick = () => {
+      console.log(`Speaking? = ${this.speaking}`);
       if (this.dialogueIndex === this.conversation.length - 1) {
         this.scene.resume(this.callerScene);
         this.scene.stop();
-      } else {
+      } else if (!this.speaking) {
         this.currentDialogueStartTime = this.time.now;
         this.dialogueIndex++;
       }
