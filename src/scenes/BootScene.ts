@@ -1,5 +1,5 @@
 import { Position } from "grid-engine";
-import { spritesheets, tiledTilemaps, tilesets } from "../assets";
+import { spritesheets, tiledTilemaps, tilesets, ui } from "../assets";
 import * as gameKeys from "../util/gameKeys";
 // import AshSpriteSheet from "../assets/sprites/ash.png";
 
@@ -43,11 +43,15 @@ export default class BootScene extends Phaser.Scene {
         endFrame: 15,
       }
     );
+
+    // Load UI components
+    this.load.image(gameKeys.uiImages.dialogueEllipsis, ui.dialogueEllps);
+    this.load.image(gameKeys.uiImages.dialogueExclaim, ui.dialogueExclm);
   }
 
   create() {
     const spawnPosition: Position = {
-      x: 16,
+      x: 23,
       y: 14,
     };
     this.scene.start(gameKeys.scenes.library.key, spawnPosition);

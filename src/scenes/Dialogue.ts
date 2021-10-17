@@ -1,3 +1,6 @@
+import * as gameKeys from "../util/gameKeys";
+import GameScene from "./GameScene";
+
 export interface dialogueSet {
   speaker: string;
   content: string[];
@@ -8,8 +11,13 @@ export interface dialogue {
   content: string;
 }
 
+export enum DialogAction {
+  EXCLAIM = "EXCLAIM",
+  NORMAL = "NORMAL",
+}
+
 interface initData {
-  action?: string;
+  action: DialogAction;
   meta?: any;
   dialogueSets: dialogueSet[];
 }
@@ -28,10 +36,10 @@ export default class Dialogue extends Phaser.Scene {
   // Stores the start time of the current dialogue
   private currentDialogueStartTime!: number;
 
-  private callerScene!: Phaser.Scene;
+  private callerScene!: GameScene;
 
   constructor() {
-    super({ key: "Dialogue", visible: false, active: false });
+    super({ key: gameKeys.uiScenes.Dialogue, visible: false, active: false });
     this.domElem = {
       box: document.getElementById("message") as HTMLElement,
       speaker: document.getElementById("speaker") as HTMLElement,
@@ -40,10 +48,8 @@ export default class Dialogue extends Phaser.Scene {
   }
 
   init(data: initData) {
-    // Set the caller scene from meta
     this.callerScene = data.meta.root;
 
-    // Reset dialogue index counter, dialogue start timer
     this.dialogueIndex = 0;
     this.currentDialogueStartTime = 0;
 

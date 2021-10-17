@@ -3,7 +3,7 @@
 import { Position } from "grid-engine";
 import { GameState, Objective } from "./stores/gameStore";
 import * as gameKeys from "../util/gameKeys";
-import { dialogueSet } from "../scenes/Dialogue";
+import { DialogAction, dialogueSet } from "../scenes/Dialogue";
 import { positionsEqual } from "./helpers";
 import GameScene from "../scenes/GameScene";
 
@@ -22,6 +22,7 @@ export interface CharacterInteractions {
     scene: GameScene,
     state: GameState
   ) => {
+    action: DialogAction;
     dialogueSets?: dialogueSet[];
     callback?: (...args: any) => any;
   };
