@@ -6,12 +6,13 @@ import getPlayerWalkingAnimationMap from "../util/walkAnim";
 import { charactersAreColliding } from "../util/helpers";
 import { CharacterInteractions } from "../util/interactions";
 import { Objective } from "../util/stores/gameStore";
+import { DialogAction } from "./Dialogue";
 
 const characterInteractions: CharacterInteractions = {
   ash: (scene, state) => {
     if (!state.objectives.MEET_ASH) {
-      state.completeObjective(Objective.MEET_ASH);
       return {
+        action: DialogAction.EXCLAIM,
         dialogueSets: [
           {
             speaker: "ash",
@@ -34,6 +35,7 @@ const characterInteractions: CharacterInteractions = {
           },
         ],
         callback: () => {
+          state.completeObjective(Objective.MEET_ASH);
           scene.gridEngine.follow("ash", "player", 1, true);
         },
       };

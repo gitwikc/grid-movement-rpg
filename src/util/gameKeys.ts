@@ -51,3 +51,12 @@ export const scenes = {
     tilemapKey: tilemaps.map2,
   },
 };
+
+export const uiScenes = {
+  Dialogue: "ui-dialogue",
+};
+
+export const uiImages = {
+  dialogueExclaim: "dialog-exclm",
+  dialogueEllipsis: "dialog-ellps",
+};

@@ -28,7 +28,6 @@ export default class LibraryScene extends GameScene {
           id: "ash",
           sprite: this.npcs.ash,
           collides: true,
-          startPosition: { x: 0, y: 0 },
           speed: 4,
           walkingAnimationMapping: getPlayerWalkingAnimationMap(
             gameKeys.spritesheets.ash.index

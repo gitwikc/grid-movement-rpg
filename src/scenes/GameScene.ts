@@ -12,7 +12,7 @@ import { Door, getDoorsForScene } from "../util/doors";
 import sceneStore from "../util/stores/sceneStore";
 import gameStore from "../util/stores/gameStore";
 import { CharacterInteractions, getInteractionFor } from "../util/interactions";
-import { dialogueSet } from "./Dialogue";
+import { DialogAction, dialogueSet } from "./Dialogue";
 import { charactersAreColliding, charactersF2F } from "../util/helpers";
 
 export default class GameScene extends Phaser.Scene {
@@ -38,17 +38,12 @@ export default class GameScene extends Phaser.Scene {
     private characterInteractions?: CharacterInteractions
   ) {
     super({ key: sceneData.key });
-    console.log(this.sceneData);
-
-    // Get the doors for the scene
     this.doors = getDoorsForScene(sceneData.key);
   }
 
   init(spawnPosition, direction) {
     this.spawnPosition = spawnPosition;
     this.spawnDirection = direction;
-
-    // console.log(typeof this.sceneStore.setCurrentScene);
     this.sceneStore().setCurrentScene(this.scene.key);
   }
 
@@ -72,9 +67,13 @@ export default class GameScene extends Phaser.Scene {
     );
   }
 
-  /**
-   * This is gonna be overridden
-   */
+  get playerPos() {
+    return {
+      x: Math.round(this.playerSprite.x),
+      y: Math.round(this.playerSprite.y),
+    };
+  }
+
   createNPCSprites(): void {}
 
   createMap(): void {
@@ -202,7 +201,7 @@ export default class GameScene extends Phaser.Scene {
     exitTile?: Position;
     enterTile?: Position;
     direction?: Direction;
-  }) {
+  }): void {
     if (charId === this.playerSpriteData.name) {
       // Update player position in state
       if (enterTile) {
@@ -214,18 +213,22 @@ export default class GameScene extends Phaser.Scene {
       );
       this.sceneStore().setPlayerFacingPosition(playerFacingPosition);
 
-      // TODO Check if a dialogue should be said
+      // Check if a dialogue should be said
       const interaction = getInteractionFor(
         this.scene.key,
         playerFacingPosition
       );
-      if (interaction)
-        this.launchDialogue(interaction.getDialogues(gameStore.getState()));
+      if (interaction) {
+        this.launchDialogue(
+          DialogAction.NORMAL,
+          interaction.getDialogues(gameStore.getState())
+        );
+      }
 
       // Check for character interaction
       if (this.characterInteractions) this.checkCharacterInteractions();
 
-      // TODO Check if player @ door, open the other scene
+      // Check if player @ door, open the other scene
       const doorAtCurrentPosition =
         this.getDoorAtPosition(playerFacingPosition);
       if (doorAtCurrentPosition) {
@@ -239,7 +242,7 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
-  checkCharacterInteractions() {
+  checkCharacterInteractions(): void {
     console.log(this.characterInteractions);
     this.gridEngine.getAllCharacters().forEach((charId: string) => {
       if (
@@ -250,19 +253,33 @@ export default class GameScene extends Phaser.Scene {
           this,
           this.gameStore()
         );
-        if (characterInteraction.dialogueSets) {
+        if (characterInteraction?.dialogueSets) {
           charactersF2F(this, this.playerSpriteData.name, charId);
-          this.launchDialogue(characterInteraction.dialogueSets);
+          this.launchDialogue(
+            characterInteraction.action,
+            characterInteraction.dialogueSets
+          );
         }
-        if (characterInteraction.callback) characterInteraction.callback();
+        if (characterInteraction?.callback) characterInteraction.callback();
       }
     });
   }
 
-  launchDialogue(dialogueSets: dialogueSet[]) {
-    this.scene.launch("Dialogue", {
+  launchDialogue(action: DialogAction, dialogueSets: dialogueSet[]): void {
+    this.scene.launch(gameKeys.uiScenes.Dialogue, {
+      meta: { root: this },
       dialogueSets,
-      meta: { root: this.scene.key },
+    });
+    const bubble = this.add.image(
+      this.playerSprite.x + 32,
+      this.playerSprite.y - 8,
+      action === DialogAction.EXCLAIM
+        ? gameKeys.uiImages.dialogueExclaim
+        : gameKeys.uiImages.dialogueEllipsis
+    );
+    bubble.setScale(1.5);
+    this.events.on("resume", () => {
+      bubble.destroy();
     });
     this.scene.pause();
   }

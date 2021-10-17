@@ -11,6 +11,9 @@ import PlayerSpriteSheet from "./sprites/player.png";
 import AshSpriteSheet from "./sprites/ash.png";
 import CombinedSheet from "./sprites/spritesheet.png";
 
+import DialogExclm from "./ui/dialog-exclm.png";
+import DialogEllipsis from "./ui/dialog-ellps.png";
+
 export const tilesets = {
   ground: GroundTileset,
   interior: InteriorTileset,
@@ -30,15 +33,7 @@ export const spritesheets = {
   combined: CombinedSheet,
 };
 
-// const ASSETS = "src/assets";
-// const MAPS = `${ASSETS}/maps`;
-// const SPRITES = `${ASSETS}/sprites`;
-
-// export const getTilesetImage = (tilesetImageName: string) =>
-//   `${MAPS}/tilesets/${tilesetImageName}.png`;
-
-// export const getTilemapTiledJSON = (tilemapTiledJSON_Name: string) =>
-//   `${MAPS}/${tilemapTiledJSON_Name}.json`;
-
-// export const getSpritesheet = (spritesheetName: string) =>
-//   `${SPRITES}/${spritesheetName}.png`;
+export const ui = {
+  dialogueEllps: DialogEllipsis,
+  dialogueExclm: DialogExclm,
+};
