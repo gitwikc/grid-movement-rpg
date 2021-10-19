@@ -9,9 +9,13 @@ import getPlayerWalkingAnimationMap from "../util/walkAnim";
 import playerWalkingAnimationMap from "../util/walkAnim";
 import * as gameKeys from "../util/gameKeys";
 import { Door, getDoorsForScene } from "../util/doors";
-import sceneStore from "../util/stores/sceneStore";
 import gameStore from "../util/stores/gameStore";
-import { CharacterInteractions, getInteractionFor } from "../util/interactions";
+import {
+  CharacterInteractions,
+  getSceneInteraction,
+  Interaction,
+  SceneInteraction,
+} from "../util/interactions";
 import { DialogAction, dialogueSet } from "./Dialogue";
 import { charactersAreColliding, charactersF2F } from "../util/helpers";
 
@@ -25,7 +29,6 @@ export default class GameScene extends Phaser.Scene {
 
   protected doors: Door[];
 
-  protected sceneStore = sceneStore.getState;
   protected gameStore = gameStore.getState;
 
   private controls;
@@ -35,16 +38,17 @@ export default class GameScene extends Phaser.Scene {
   constructor(
     private sceneData: gameKeys.SceneData,
     private playerSpriteData: gameKeys.SpriteData,
-    private characterInteractions?: CharacterInteractions
+    private characterInteractions?: CharacterInteractions,
+    private sceneInteractions?: SceneInteraction[]
   ) {
     super({ key: sceneData.key });
     this.doors = getDoorsForScene(sceneData.key);
   }
 
-  init(spawnPosition, direction) {
+  init(spawnPosition: Position, direction: Direction) {
     this.spawnPosition = spawnPosition;
     this.spawnDirection = direction;
-    this.sceneStore().setCurrentScene(this.scene.key);
+    this.gameStore().setCurrentScene(this.scene.key);
   }
 
   createControlKeys(): void {
@@ -205,24 +209,23 @@ export default class GameScene extends Phaser.Scene {
     if (charId === this.playerSpriteData.name) {
       // Update player position in state
       if (enterTile) {
-        this.sceneStore().setPlayerPosition(enterTile);
+        this.gameStore().setPlayerPosition(enterTile);
       }
 
       const playerFacingPosition = this.gridEngine.getFacingPosition(
         this.playerSpriteData.name
       );
-      this.sceneStore().setPlayerFacingPosition(playerFacingPosition);
+      this.gameStore().setPlayerFacingPosition(playerFacingPosition);
 
-      // Check if a dialogue should be said
-      const interaction = getInteractionFor(
-        this.scene.key,
-        playerFacingPosition
-      );
-      if (interaction) {
-        this.launchDialogue(
-          DialogAction.NORMAL,
-          interaction.getDialogues(gameStore.getState())
-        );
+      // Check if a dialogue should be said (non-character collision)
+      if (this.sceneInteractions) {
+        const interaction = getSceneInteraction(
+          this.sceneInteractions,
+          playerFacingPosition
+        )?.getInteraction(this, this.gameStore());
+        if (interaction)
+          this.launchDialogue(interaction.action, interaction.dialogueSets);
+        if (interaction?.callback) interaction.callback();
       }
 
       // Check for character interaction

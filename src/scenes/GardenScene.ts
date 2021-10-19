@@ -39,6 +39,17 @@ const characterInteractions: CharacterInteractions = {
           scene.gridEngine.follow("ash", "player", 1, true);
         },
       };
+    } else {
+      return {
+        action: DialogAction.NORMAL,
+        dialogueSets: [
+          {
+            speaker: "Player",
+            content: ["Don't worry, we'll find your phone soon."],
+          },
+          { speaker: "Ash", content: ["Thanks for helping me"] },
+        ],
+      };
     }
   },
 };

@@ -87,7 +87,6 @@ export default class Dialogue extends Phaser.Scene {
     this.currentDialogueStartTime = this.game.getTime();
 
     this.domElem.box.onclick = () => {
-      console.log(`Speaking? = ${this.speaking}`);
       if (this.dialogueIndex === this.conversation.length - 1) {
         this.scene.resume(this.callerScene);
         this.scene.stop();

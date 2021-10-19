@@ -16,10 +16,9 @@ export const charactersAreColliding = (
   const char1Position: Position = scene.gridEngine.getPosition(char1);
   const char2Position: Position = scene.gridEngine.getPosition(char2);
 
-  return (
-    positionsEqual(char1Facing, char2Position) ||
-    positionsEqual(char2Facing, char1Position)
-  );
+  // True only when char1 is facing char2 not vice versa
+  // Remember, your player char should be char1 here
+  return positionsEqual(char1Facing, char2Position);
 };
 
 export const charactersF2F = (
