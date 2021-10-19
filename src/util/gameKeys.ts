@@ -35,6 +35,10 @@ export const spritesheets = {
     key: "spritesheet-ash",
     index: 1,
   },
+  gary: {
+    key: "spritesheet-gary",
+    index: 2,
+  },
 };
 
 export const scenes = {

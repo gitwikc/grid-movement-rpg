@@ -2,7 +2,7 @@
 import GameScene from "./GameScene";
 import * as gameKeys from "../util/gameKeys";
 import { Direction, GridEngineConfig } from "grid-engine";
-import getPlayerWalkingAnimationMap from "../util/walkAnim";
+import getCharWalkingAnimationMap from "../util/walkAnim";
 import { SceneInteraction, CharacterInteractions } from "../util/interactions";
 import { DialogAction } from "./Dialogue";
 import { GameState, Objective } from "../util/stores/gameStore";
@@ -130,7 +130,7 @@ export default class LibraryScene extends GameScene {
           sprite: this.npcs.ash,
           collides: true,
           speed: 4,
-          walkingAnimationMapping: getPlayerWalkingAnimationMap(
+          walkingAnimationMapping: getCharWalkingAnimationMap(
             gameKeys.spritesheets.ash.index
           ),
           facingDirection: Direction.DOWN,

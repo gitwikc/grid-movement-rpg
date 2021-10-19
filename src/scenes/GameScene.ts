@@ -5,7 +5,7 @@ import {
   GridEngineConfig,
   Position,
 } from "grid-engine";
-import getPlayerWalkingAnimationMap from "../util/walkAnim";
+import getCharWalkingAnimationMap from "../util/walkAnim";
 import playerWalkingAnimationMap from "../util/walkAnim";
 import * as gameKeys from "../util/gameKeys";
 import { Door, getDoorsForScene } from "../util/doors";
@@ -49,6 +49,8 @@ export default class GameScene extends Phaser.Scene {
     this.spawnPosition = spawnPosition;
     this.spawnDirection = direction;
     this.gameStore().setCurrentScene(this.scene.key);
+
+    console.log(this.gameStore());
   }
 
   createControlKeys(): void {
@@ -141,7 +143,7 @@ export default class GameScene extends Phaser.Scene {
       collides: true,
       startPosition: this.spawnPosition,
       facingDirection: this.spawnDirection,
-      walkingAnimationMapping: getPlayerWalkingAnimationMap(
+      walkingAnimationMapping: getCharWalkingAnimationMap(
         this.playerSpriteData.spritesheet.index
       ),
     };
@@ -281,6 +283,7 @@ export default class GameScene extends Phaser.Scene {
         : gameKeys.uiImages.dialogueEllipsis
     );
     bubble.setScale(1.5);
+    bubble.setDepth(999);
     this.events.on("resume", () => {
       bubble.destroy();
     });

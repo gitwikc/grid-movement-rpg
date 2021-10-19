@@ -3,7 +3,7 @@
 import GameScene from "./GameScene";
 import * as gameKeys from "../util/gameKeys";
 import { Direction, GridEngineConfig } from "grid-engine";
-import getPlayerWalkingAnimationMap from "../util/walkAnim";
+import getCharWalkingAnimationMap from "../util/walkAnim";
 
 export default class ClassroomScene extends GameScene {
   constructor() {
@@ -31,7 +31,7 @@ export default class ClassroomScene extends GameScene {
           collides: true,
           startPosition: { x: 0, y: 0 },
           speed: 4,
-          walkingAnimationMapping: getPlayerWalkingAnimationMap(
+          walkingAnimationMapping: getCharWalkingAnimationMap(
             gameKeys.spritesheets.ash.index
           ),
           facingDirection: Direction.DOWN,

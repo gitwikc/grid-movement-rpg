@@ -1,11 +1,21 @@
 import { Position } from "grid-engine";
 import { spritesheets, tiledTilemaps, tilesets, ui } from "../assets";
 import * as gameKeys from "../util/gameKeys";
-// import AshSpriteSheet from "../assets/sprites/ash.png";
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
     super("BootScene");
+  }
+
+  createSpriteConfig(
+    index: number
+  ): Phaser.Types.Loader.FileTypes.ImageFrameConfig {
+    return {
+      frameWidth: 64,
+      frameHeight: 64,
+      startFrame: index * 16,
+      endFrame: index * 16 + 15,
+    };
   }
 
   preload() {
@@ -20,29 +30,16 @@ export default class BootScene extends Phaser.Scene {
     this.load.tilemapTiledJSON(gameKeys.tilemaps.map2, tiledTilemaps.map2);
     this.load.tilemapTiledJSON(gameKeys.tilemaps.test, tiledTilemaps.test);
 
-    // Load the player spritesheet
-    const characterFrame = {
-      frameWidth: 64,
-      frameHeight: 64,
-    };
-    this.load.spritesheet(
-      gameKeys.spritesheets.ash.key,
-      spritesheets.combined,
-      {
-        ...characterFrame,
-        startFrame: 15,
-        endFrame: 31,
-      }
-    );
-    this.load.spritesheet(
-      gameKeys.spritesheets.player.key,
-      spritesheets.combined,
-      {
-        ...characterFrame,
-        startFrame: 0,
-        endFrame: 15,
-      }
-    );
+    // Load the spritesheets
+    Object.keys(gameKeys.spritesheets).forEach((key) => {
+      // @ts-ignore
+      const spritesheet = gameKeys.spritesheets[key];
+      this.load.spritesheet(
+        spritesheet.key,
+        spritesheets.combined,
+        this.createSpriteConfig(spritesheet.index)
+      );
+    });
 
     // Load UI components
     this.load.image(gameKeys.uiImages.dialogueEllipsis, ui.dialogueEllps);
