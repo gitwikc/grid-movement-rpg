@@ -11,6 +11,7 @@ import { DialogAction } from "./Dialogue";
 const characterInteractions: CharacterInteractions = {
   ash: (scene, state) => {
     if (!state.objectives.MEET_ASH) {
+      // state.completeObjective(Objective.MEET_ASH);
       return {
         action: DialogAction.EXCLAIM,
         dialogueSets: [

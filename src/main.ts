@@ -1,5 +1,5 @@
-import { GridEngine } from "grid-engine";
 import Phaser from "phaser";
+import { GridEngine } from "grid-engine";
 import BootScene from "./scenes/BootScene";
 import ClassroomScene from "./scenes/ClassroomScene";
 import Dialogue from "./scenes/Dialogue";

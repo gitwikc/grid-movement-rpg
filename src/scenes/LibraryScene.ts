@@ -12,47 +12,68 @@ const sceneInteractions: SceneInteraction[] = [
     positions: [{ x: 29, y: 14 }],
     getInteraction: (scene: GameScene, state: GameState) => {
       if (state.objectives.MEET_ASH) {
-        return {
-          action: DialogAction.EXCLAIM,
-          dialogueSets: [
-            {
-              speaker: "Player",
-              content: [
-                "Let's see the CCTV footage to see if we can find your phone",
-                "I am sure it'll be some help at least",
-              ],
+        if (state.objectives.CHECK_PC) {
+          return {
+            action: DialogAction.NORMAL,
+            dialogueSets: [
+              {
+                speaker: "Player",
+                content: [
+                  "Brilliant! Ash, you're lucky the school has CCTVs in the classrooms. How easy it was, finding your phone",
+                  "(...Although there's weird watermarks on this CCTV clip... Must be the school website)",
+                ],
+              },
+              {
+                speaker: "Ash",
+                content: ["Come on, let's go!"],
+              },
+            ],
+          };
+        } else {
+          // state.completeObjective(Objective.CHECK_PC);
+          return {
+            action: DialogAction.EXCLAIM,
+            dialogueSets: [
+              {
+                speaker: "Player",
+                content: [
+                  "Let's see the CCTV footage to see if we can find your phone",
+                  "I am sure it'll be some help at least",
+                ],
+              },
+              {
+                speaker: "PC",
+                content: [
+                  "ZZZZ... ZZZZ... Brrrr...",
+                  "Accessing footage",
+                  "...",
+                  "Query complete!",
+                ],
+              },
+              {
+                speaker: "Ash",
+                content: ["I wonder if my phone fell in the garden"],
+              },
+              {
+                speaker: "Player",
+                content: [
+                  "Hmm... No signs of it there",
+                  "...",
+                  "OH LOOK! It fell in the classroom dustbin while you were dumping something",
+                  "Let's go get your phone, Ash!",
+                ],
+              },
+              {
+                speaker: "Ash",
+                content: ["*sigh* Yes!", "Let's go!!"],
+              },
+            ],
+
+            callback: () => {
+              state.completeObjective(Objective.CHECK_PC);
             },
-            {
-              speaker: "PC",
-              content: [
-                "ZZZZ... ZZZZ... Brrrr...",
-                "Accessing footage",
-                "...",
-                "Query complete!",
-              ],
-            },
-            {
-              speaker: "Ash",
-              content: ["I wonder if my phone fell in the garden"],
-            },
-            {
-              speaker: "Player",
-              content: [
-                "Hmm... No signs of it there",
-                "...",
-                "OH LOOK! It fell in the classroom dustbin while you were dumping something",
-                "Let's go get your phone, Ash!",
-              ],
-            },
-            {
-              speaker: "Ash",
-              content: ["*sigh* Yes!", "Let's go!!"],
-            },
-          ],
-          callback: () => {
-            state.completeObjective(Objective.CHECK_PC);
-          },
-        };
+          };
+        }
       } else
         return {
           action: DialogAction.NORMAL,

@@ -10,7 +10,7 @@ import GameScene from "../scenes/GameScene";
 export interface Interaction {
   action?: DialogAction;
   dialogueSets?: dialogueSet[];
-  callback?: (...args: any) => any;
+  callback?: () => void;
 }
 
 export interface SceneInteraction {
