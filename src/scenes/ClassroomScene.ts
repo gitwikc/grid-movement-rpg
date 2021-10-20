@@ -83,10 +83,13 @@ const sceneInteractions: SceneInteraction[] = [
           },
           {
             speaker: "Ash",
-            content: ["You're gonna be a star soon... HAA!!!"],
+            content: ["You're gonna be really FAMOUS soon... HAA!!!"],
           },
           { speaker: "Player", content: ["AAAAAAAAHHHHHH!!!! HELP MEEEE!!!"] },
         ],
+        callback: () => {
+          scene.scene.start(gameKeys.scenes.endscene.key);
+        },
       };
     },
   },
@@ -100,7 +103,8 @@ export default class ClassroomScene extends GameScene {
         name: "player",
         spritesheet: gameKeys.spritesheets.player,
       },
-      characterInteractions
+      characterInteractions,
+      sceneInteractions
     );
   }
 

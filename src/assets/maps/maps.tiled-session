@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "test.tmx",
+    "activeFile": "map2.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -32,7 +32,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 479.5989974937344,
-                "y": 479.59899749373443
+                "y": 481.7376775271512
             }
         },
         "map2.tmx#furniture": {
@@ -73,8 +73,8 @@
     "property.type": "bool",
     "recentFiles": [
         "map1.tmx",
-        "map2.tmx",
-        "test.tmx"
+        "test.tmx",
+        "map2.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {

@@ -44,6 +44,9 @@ export default class BootScene extends Phaser.Scene {
     // Load UI components
     this.load.image(gameKeys.uiImages.dialogueEllipsis, ui.dialogueEllps);
     this.load.image(gameKeys.uiImages.dialogueExclaim, ui.dialogueExclm);
+
+    // Load other images
+    this.load.image(gameKeys.uiImages.anoopSoni, ui.anoopSoni);
   }
 
   create() {

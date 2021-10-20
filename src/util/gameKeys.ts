@@ -54,6 +54,9 @@ export const scenes = {
     key: "scene-classroom",
     tilemapKey: tilemaps.map2,
   },
+  endscene: {
+    key: "scene-endscene",
+  },
 };
 
 export const uiScenes = {
@@ -63,4 +66,5 @@ export const uiScenes = {
 export const uiImages = {
   dialogueExclaim: "dialog-exclm",
   dialogueEllipsis: "dialog-ellps",
+  anoopSoni: "anoop-soni",
 };

@@ -23,8 +23,8 @@ const gameStore = create<GameState>(
   devtools((set) => ({
     // OBJECTIVES
     objectives: {
-      MEET_ASH: true,
-      CHECK_PC: true,
+      MEET_ASH: false,
+      CHECK_PC: false,
       FIND_PHONE: false,
     },
     completeObjective: (objective: Objective) =>

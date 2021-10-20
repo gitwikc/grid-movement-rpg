@@ -14,6 +14,8 @@ import CombinedSheet from "./sprites/spritesheet.png";
 import DialogExclm from "./ui/dialog-exclm.png";
 import DialogEllipsis from "./ui/dialog-ellps.png";
 
+import AnoopSoni from "./ui/anoop-soni.jpg";
+
 export const tilesets = {
   ground: GroundTileset,
   interior: InteriorTileset,
@@ -36,4 +38,5 @@ export const spritesheets = {
 export const ui = {
   dialogueEllps: DialogEllipsis,
   dialogueExclm: DialogExclm,
+  anoopSoni: AnoopSoni,
 };

@@ -5,6 +5,7 @@ import ClassroomScene from "./scenes/ClassroomScene";
 import Dialogue from "./scenes/Dialogue";
 import GardenScene from "./scenes/GardenScene";
 import LibraryScene from "./scenes/LibraryScene";
+import EndScene from "./scenes/EndScene";
 
 // @ts-ignore
 const game = new Phaser.Game({
@@ -27,5 +28,12 @@ const game = new Phaser.Game({
   backgroundColor: 0x46c6f7,
   roundPixels: true,
   pixelArt: true,
-  scene: [BootScene, GardenScene, LibraryScene, ClassroomScene, Dialogue],
+  scene: [
+    BootScene,
+    GardenScene,
+    LibraryScene,
+    ClassroomScene,
+    Dialogue,
+    EndScene,
+  ],
 });
