@@ -13,7 +13,7 @@ export default class EndScene extends Phaser.Scene {
       0,
       0,
       0,
-      (camera: Phaser.Cameras.Scene2D.Camera, completion: number) => {
+      (_camera: Phaser.Cameras.Scene2D.Camera, completion: number) => {
         if (completion === 1) {
           const dialogueSets = [
             {

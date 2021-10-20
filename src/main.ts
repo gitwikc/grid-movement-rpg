@@ -6,6 +6,17 @@ import Dialogue from "./scenes/Dialogue";
 import GardenScene from "./scenes/GardenScene";
 import LibraryScene from "./scenes/LibraryScene";
 import EndScene from "./scenes/EndScene";
+import { ui } from "./assets";
+
+const app = document.getElementById("app")!;
+app.onmousedown = () => {
+  app.style.cursor = `url(${ui.cursorDown}), auto`;
+};
+app.onmouseup = () => {
+  window.setTimeout(() => {
+    app.style.cursor = `url(${ui.cursor}), auto`;
+  }, 400);
+};
 
 // @ts-ignore
 const game = new Phaser.Game({
