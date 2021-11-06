@@ -8,6 +8,16 @@ import Map2Tilemap from "./maps/map2.json";
 import TestTilemap from "./maps/test.json";
 
 import PlayerSpriteSheet from "./sprites/player.png";
+import AshSpriteSheet from "./sprites/ash.png";
+import CombinedSheet from "./sprites/spritesheet.png";
+
+import DialogExclm from "./ui/dialog-exclm.png";
+import DialogEllipsis from "./ui/dialog-ellps.png";
+
+import AnoopSoni from "./ui/anoop-soni.jpg";
+
+import Cursor from "../assets/ui/cursor.png";
+import CursorDown from "../assets/ui/cursor-down.png";
 
 export const tilesets = {
   ground: GroundTileset,
@@ -24,17 +34,14 @@ export const tiledTilemaps = {
 
 export const spritesheets = {
   player: PlayerSpriteSheet,
+  ash: AshSpriteSheet,
+  combined: CombinedSheet,
 };
 
-// const ASSETS = "src/assets";
-// const MAPS = `${ASSETS}/maps`;
-// const SPRITES = `${ASSETS}/sprites`;
-
-// export const getTilesetImage = (tilesetImageName: string) =>
-//   `${MAPS}/tilesets/${tilesetImageName}.png`;
-
-// export const getTilemapTiledJSON = (tilemapTiledJSON_Name: string) =>
-//   `${MAPS}/${tilemapTiledJSON_Name}.json`;
-
-// export const getSpritesheet = (spritesheetName: string) =>
-//   `${SPRITES}/${spritesheetName}.png`;
+export const ui = {
+  dialogueEllps: DialogEllipsis,
+  dialogueExclm: DialogExclm,
+  anoopSoni: AnoopSoni,
+  cursor: Cursor,
+  cursorDown: CursorDown,
+};
