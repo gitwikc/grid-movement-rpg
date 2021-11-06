@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import { Position } from "grid-engine";
 import { GameState, Objective } from "./stores/gameStore";
 import * as gameKeys from "../util/gameKeys";

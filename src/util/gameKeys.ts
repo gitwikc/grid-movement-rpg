@@ -20,44 +20,11 @@ export const tilesetImages = {
   things: "tileset-things",
 };
 
-export const tilemaps = {
-  map1: "tilemap-map1",
-  map2: "tilemap-map2",
-  test: "tilemap-test",
-};
+export const tilemaps = {};
 
-export const spritesheets = {
-  player: {
-    key: "spritesheet-player",
-    index: 0,
-  },
-  ash: {
-    key: "spritesheet-ash",
-    index: 1,
-  },
-  gary: {
-    key: "spritesheet-gary",
-    index: 2,
-  },
-};
+export const spritesheets = {};
 
-export const scenes = {
-  garden: {
-    key: "scene-garden",
-    tilemapKey: tilemaps.map1,
-  },
-  library: {
-    key: "scene-library",
-    tilemapKey: tilemaps.test,
-  },
-  classroom: {
-    key: "scene-classroom",
-    tilemapKey: tilemaps.map2,
-  },
-  endscene: {
-    key: "scene-endscene",
-  },
-};
+export const scenes: { [key: string]: SceneData } = {};
 
 export const uiScenes = {
   Dialogue: "ui-dialogue",
@@ -66,5 +33,4 @@ export const uiScenes = {
 export const uiImages = {
   dialogueExclaim: "dialog-exclm",
   dialogueEllipsis: "dialog-ellps",
-  anoopSoni: "anoop-soni",
 };
