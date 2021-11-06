@@ -5,7 +5,7 @@ import {
   GridEngineConfig,
   Position,
 } from "grid-engine";
-import getPlayerWalkingAnimationMap from "../util/walkAnim";
+import getCharWalkingAnimationMap from "../util/walkAnim";
 import playerWalkingAnimationMap from "../util/walkAnim";
 import * as gameKeys from "../util/gameKeys";
 import { Door, getDoorsForScene } from "../util/doors";
@@ -49,6 +49,8 @@ export default class GameScene extends Phaser.Scene {
     this.spawnPosition = spawnPosition;
     this.spawnDirection = direction;
     this.gameStore().setCurrentScene(this.scene.key);
+
+    console.log(this.gameStore());
   }
 
   createControlKeys(): void {
@@ -141,7 +143,7 @@ export default class GameScene extends Phaser.Scene {
       collides: true,
       startPosition: this.spawnPosition,
       facingDirection: this.spawnDirection,
-      walkingAnimationMapping: getPlayerWalkingAnimationMap(
+      walkingAnimationMapping: getCharWalkingAnimationMap(
         this.playerSpriteData.spritesheet.index
       ),
     };
@@ -223,9 +225,14 @@ export default class GameScene extends Phaser.Scene {
           this.sceneInteractions,
           playerFacingPosition
         )?.getInteraction(this, this.gameStore());
-        if (interaction)
+        if (interaction) {
           this.launchDialogue(interaction.action, interaction.dialogueSets);
-        if (interaction?.callback) interaction.callback();
+          this.events.on("resume", function () {
+            console.log("Resume callback in scene interaction");
+            if (interaction?.callback) interaction.callback();
+          });
+          // if (interaction?.callback) interaction.callback();
+        }
       }
 
       // Check for character interaction
@@ -237,33 +244,38 @@ export default class GameScene extends Phaser.Scene {
       if (doorAtCurrentPosition) {
         const { dest } = doorAtCurrentPosition;
 
-        this.cameras.main.fadeOut(300, 0, 0, 0, () => {
-          this.scene.start(dest.sceneKey, dest.position);
-          this.scene.stop();
-        });
+        if (doorAtCurrentPosition.updateState)
+          doorAtCurrentPosition.updateState(this.gameStore());
+
+        if (!doorAtCurrentPosition.locked) {
+          this.cameras.main.fadeOut(300, 0, 0, 0, () => {
+            this.scene.start(dest.sceneKey, dest.position);
+            this.scene.stop();
+          });
+        }
       }
     }
   }
 
   checkCharacterInteractions(): void {
-    console.log(this.characterInteractions);
     this.gridEngine.getAllCharacters().forEach((charId: string) => {
-      if (
-        charactersAreColliding(this.playerSpriteData.name, charId, this) &&
-        this.characterInteractions[charId]
-      ) {
+      if (charactersAreColliding(this.playerSpriteData.name, charId, this)) {
         const characterInteraction = this.characterInteractions[charId](
           this,
           this.gameStore()
         );
         if (characterInteraction?.dialogueSets) {
           charactersF2F(this, this.playerSpriteData.name, charId);
+          this.events.on("resume", () => {
+            console.log("In resume event of char inter");
+            if (characterInteraction?.callback) characterInteraction.callback();
+          });
           this.launchDialogue(
             characterInteraction.action,
             characterInteraction.dialogueSets
           );
         }
-        if (characterInteraction?.callback) characterInteraction.callback();
+        // if (characterInteraction?.callback) characterInteraction.callback();
       }
     });
   }
@@ -281,7 +293,9 @@ export default class GameScene extends Phaser.Scene {
         : gameKeys.uiImages.dialogueEllipsis
     );
     bubble.setScale(1.5);
+    bubble.setDepth(999);
     this.events.on("resume", () => {
+      console.log("Destroying bubble");
       bubble.destroy();
     });
     this.scene.pause();

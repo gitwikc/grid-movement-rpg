@@ -35,6 +35,10 @@ export const spritesheets = {
     key: "spritesheet-ash",
     index: 1,
   },
+  gary: {
+    key: "spritesheet-gary",
+    index: 2,
+  },
 };
 
 export const scenes = {
@@ -50,6 +54,9 @@ export const scenes = {
     key: "scene-classroom",
     tilemapKey: tilemaps.map2,
   },
+  endscene: {
+    key: "scene-endscene",
+  },
 };
 
 export const uiScenes = {
@@ -59,4 +66,5 @@ export const uiScenes = {
 export const uiImages = {
   dialogueExclaim: "dialog-exclm",
   dialogueEllipsis: "dialog-ellps",
+  anoopSoni: "anoop-soni",
 };

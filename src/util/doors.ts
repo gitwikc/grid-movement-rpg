@@ -1,5 +1,6 @@
 import { Direction, Position } from "grid-engine";
 import * as gameKeys from "../util/gameKeys";
+import { positionsEqual } from "./helpers";
 import { GameState } from "./stores/gameStore";
 
 export interface Door {
@@ -9,6 +10,7 @@ export interface Door {
     position: Position;
     direction: Direction;
   };
+  locked: boolean;
   updateState?: (state: GameState) => void;
 }
 
@@ -24,10 +26,12 @@ const createDoor = (
   x1: number,
   y1: number,
   direction: Direction = Direction.DOWN,
+  locked: boolean = false,
   updateState?: (state: GameState) => void
 ): Door => ({
   position: { x: x0, y: y0 },
   dest: { sceneKey: destSceneKey, position: { x: x1, y: y1 }, direction },
+  locked,
   updateState,
 });
 
@@ -36,10 +40,21 @@ const createDoors = (
   destSceneKey: string,
   x1: number,
   y1: number,
-  direction: Direction = Direction.DOWN
+  direction: Direction = Direction.DOWN,
+  locked: boolean = false,
+  updateState?: (state: GameState) => void
 ): Door[] =>
   positions.map((position) =>
-    createDoor(position[0], position[1], destSceneKey, x1, y1, direction)
+    createDoor(
+      position[0],
+      position[1],
+      destSceneKey,
+      x1,
+      y1,
+      direction,
+      locked,
+      updateState
+    )
   );
 
 const doors: SceneDoor[] = [
@@ -66,7 +81,21 @@ const doors: SceneDoor[] = [
         ],
         gameKeys.scenes.garden.key,
         15,
-        4
+        4,
+        Direction.DOWN,
+        false,
+        (state) => {
+          if (state.objectives.MEET_ASH && state.objectives.CHECK_PC) {
+            const classMainDoors = doors
+              .find((door) => door.sceneKey === gameKeys.scenes.classroom.key)
+              ?.doors.filter(
+                (door) =>
+                  positionsEqual(door.position, { x: 17, y: 1 }) ||
+                  positionsEqual(door.position, { x: 18, y: 1 })
+              );
+            classMainDoors?.forEach((door) => (door.locked = true));
+          }
+        }
       ),
     ],
   },
