@@ -2,10 +2,27 @@
 import { Direction, Position } from "grid-engine";
 import GameScene from "../scenes/GameScene";
 
+/**
+ * Checks equality of pos.x and pos.y for two Positions
+ *
+ * @param pos1 Position 1
+ * @param pos2 Position 2
+ * @returns If the two positions are the same
+ */
 export const positionsEqual = (pos1: Position, pos2: Position): boolean => {
   return pos1.x === pos2.x && pos1.y === pos2.y;
 };
 
+/**
+ * Checks for collision of two characters.
+ * Here, checks if character 1 is facing towards character 2.
+ * Use for checking if a dialogue should be spoken with the NPC.
+ *
+ * @param char1 Character 1 *usu. MC / User controlled character*
+ * @param char2 Character 2 *usu. Side character / NPC*
+ * @param scene The scene in which the two characters are. (Pass curreny scene)
+ * @returns `true` if character 1 is facing towards character 2
+ */
 export const charactersAreColliding = (
   char1: string,
   char2: string,
@@ -16,11 +33,16 @@ export const charactersAreColliding = (
   const char1Position: Position = scene.gridEngine.getPosition(char1);
   const char2Position: Position = scene.gridEngine.getPosition(char2);
 
-  // True only when char1 is facing char2 not vice versa
-  // Remember, your player char should be char1 here
   return positionsEqual(char1Facing, char2Position);
 };
 
+/**
+ * Turns two characters to face each other.
+ *
+ * @param scene The scene in which the 2 characters are *usu. current scene*
+ * @param char1 Character 1
+ * @param char2 Character 2
+ */
 export const charactersF2F = (
   scene: GameScene,
   char1: string,
