@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   CharacterData,
   Direction,
@@ -6,14 +5,12 @@ import {
   Position,
 } from "grid-engine";
 import getCharWalkingAnimationMap from "../util/walkAnim";
-import playerWalkingAnimationMap from "../util/walkAnim";
 import * as gameKeys from "../util/gameKeys";
-import { Door, getDoorsForScene } from "../util/doors";
+import { Door } from "../util/doors/types";
 import gameStore from "../util/stores/gameStore";
 import {
   CharacterInteractions,
   getSceneInteraction,
-  Interaction,
   SceneInteraction,
 } from "../util/interactions";
 import { DialogAction, dialogueSet } from "./Dialogue";
@@ -27,8 +24,6 @@ export default class GameScene extends Phaser.Scene {
   protected spawnPosition: Position = { x: 0, y: 0 };
   protected spawnDirection: Direction = Direction.DOWN;
 
-  protected doors: Door[];
-
   protected gameStore = gameStore.getState;
 
   private controls;
@@ -37,12 +32,12 @@ export default class GameScene extends Phaser.Scene {
 
   constructor(
     private sceneData: gameKeys.SceneData,
+    protected doors: Door[],
     private playerSpriteData: gameKeys.SpriteData,
     private characterInteractions?: CharacterInteractions,
     private sceneInteractions?: SceneInteraction[]
   ) {
     super({ key: sceneData.key });
-    this.doors = getDoorsForScene(sceneData.key);
   }
 
   init(spawnPosition: Position, direction: Direction) {
@@ -73,7 +68,11 @@ export default class GameScene extends Phaser.Scene {
     );
   }
 
-  get playerPos() {
+  /**
+   * The player sprite's Position in pixels on the map.
+   * NOT the player sprite's current grid Position
+   */
+  get playerSpritePosition() {
     return {
       x: Math.round(this.playerSprite.x),
       y: Math.round(this.playerSprite.y),
@@ -101,7 +100,6 @@ export default class GameScene extends Phaser.Scene {
     });
   }
   setupCamera(): void {
-    // Configure camera to folow playerSprite
     this.cameras.main.startFollow(this.playerSprite);
     this.cameras.main.setLerp(
       this.CAMERA_FOLLOW_SPEED,
@@ -109,7 +107,6 @@ export default class GameScene extends Phaser.Scene {
     );
     this.cameras.main.setRoundPixels(true);
 
-    // World and camera bounds
     this.physics.world.setBounds(
       0,
       0,
@@ -125,11 +122,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.createControlKeys(); // Same for all scenes
-    // this.createNPCSprites(); Called in child class
-    this.createPlayerSprite(); // Same for all sprites
-    this.createMap(); // Same for all
-    this.setupCamera(); // Same for all scenes
+    this.createControlKeys();
+    this.createPlayerSprite();
+    this.createMap();
+    this.setupCamera();
   }
 
   create(gridEngineConfig: GridEngineConfig) {
@@ -275,7 +271,6 @@ export default class GameScene extends Phaser.Scene {
             characterInteraction.dialogueSets
           );
         }
-        // if (characterInteraction?.callback) characterInteraction.callback();
       }
     });
   }
