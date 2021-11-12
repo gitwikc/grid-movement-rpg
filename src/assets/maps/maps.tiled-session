@@ -18,10 +18,10 @@
         },
         "hallways/floor-4.tmx": {
             "scale": 1,
-            "selectedLayer": 5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 455,
-                "y": 354.5
+                "x": 432,
+                "y": 1727.5
             }
         },
         "hallways/floor-4.tmx#furniture": {
@@ -37,8 +37,8 @@
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 444,
-                "y": 1880.5
+                "x": 432,
+                "y": 1727.5
             }
         },
         "hallways/floor-5.tmx#furniture": {
@@ -85,8 +85,8 @@
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 466.6666666666666,
-                "y": 257.99999999999994
+                "x": 480,
+                "y": 479.33333333333337
             }
         },
         "rooms/classroom.tmx#furniture": {
@@ -96,6 +96,17 @@
         "rooms/classroom.tmx#room": {
             "scaleInDock": 0.75,
             "scaleInEditor": 1
+        },
+        "rooms/festroom.tmx": {
+            "scale": 0.9242708333333333,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 480.3786768849318,
+                "y": 480.9196438634059
+            }
+        },
+        "rooms/festroom.tmx#room": {
+            "scaleInDock": 1
         },
         "test.tmx": {
             "scale": 0.5727588383838383,
@@ -124,7 +135,7 @@
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/hallways",
+    "last.exportedFilePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/rooms",
     "last.externalTilesetPath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/tilesets",
     "last.imagePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/tilesets",
     "map.height": 72,
@@ -142,10 +153,10 @@
     "project": "maps.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "hallways/floor-5.tmx",
         "rooms/classroom.tmx",
-        "tilesets/things.tsx",
+        "hallways/floor-5.tmx",
         "hallways/floor-4.tmx",
+        "tilesets/things.tsx",
         "tilesets/furniture.tsx",
         "tilesets/room.tsx",
         "map2.tmx",
