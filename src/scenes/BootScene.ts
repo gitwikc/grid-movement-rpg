@@ -1,5 +1,5 @@
 import { Position } from "grid-engine";
-import { tilesets, ui, spritesheets } from "../assets";
+import { tilesets, ui, spritesheets, tiledTilemaps } from "../assets";
 import * as gameKeys from "../util/gameKeys";
 
 export default class BootScene extends Phaser.Scene {
@@ -26,25 +26,41 @@ export default class BootScene extends Phaser.Scene {
     this.load.image(gameKeys.tilesetImages.things, tilesets.things);
 
     // Load Tiled tilemap JSONs
+    this.load.tilemapTiledJSON(
+      gameKeys.tilemaps.hallways.floor4,
+      tiledTilemaps.hallways.floor4
+    );
+    this.load.tilemapTiledJSON(
+      gameKeys.tilemaps.hallways.floor5,
+      tiledTilemaps.hallways.floor5
+    );
+    this.load.tilemapTiledJSON(
+      gameKeys.tilemaps.rooms.classroom,
+      tiledTilemaps.rooms.classroom
+    );
+    this.load.tilemapTiledJSON(
+      gameKeys.tilemaps.rooms.festroom,
+      tiledTilemaps.rooms.festroom
+    );
 
     // Load the spritesheets
     this.load.spritesheet(
-      gameKeys.spritesheets.arya,
+      gameKeys.spritesheets.arya.key,
       spritesheets.arya,
-      this.createSpriteConfig(0)
+      this.createSpriteConfig(gameKeys.spritesheets.arya.index)
     );
     this.load.spritesheet(
-      gameKeys.spritesheets.sattwik,
+      gameKeys.spritesheets.sattwik.key,
       spritesheets.sattwik,
-      this.createSpriteConfig(0)
+      this.createSpriteConfig(gameKeys.spritesheets.sattwik.index)
     );
     this.load.spritesheet(
-      gameKeys.spritesheets.studentF,
+      gameKeys.spritesheets.studentF.key,
       spritesheets.studentF,
       { frameWidth: 64, frameHeight: 64 }
     );
     this.load.spritesheet(
-      gameKeys.spritesheets.studentM,
+      gameKeys.spritesheets.studentM.key,
       spritesheets.studentM,
       { frameWidth: 64, frameHeight: 64 }
     );

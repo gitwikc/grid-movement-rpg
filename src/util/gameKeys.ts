@@ -20,13 +20,22 @@ export const tilesetImages = {
   things: "tileset-things",
 };
 
-export const tilemaps = {};
+export const tilemaps = {
+  hallways: {
+    floor4: "tilemap-floor4",
+    floor5: "tilemap-floor5",
+  },
+  rooms: {
+    classroom: "tilemaps-classroom",
+    festroom: "tilemaps-festroom",
+  },
+};
 
 export const spritesheets = {
-  arya: "spritesheet-arya",
-  sattwik: "spritesheet-sattwik",
-  studentF: "spritesheet-studentF",
-  studentM: "spritesheet-studentM",
+  arya: { key: "spritesheet-arya", index: 0 },
+  sattwik: { key: "spritesheet-sattwik", index: 0 },
+  studentF: { key: "spritesheet-studentF" },
+  studentM: { key: "spritesheet-studentM" },
 };
 
 export const scenes = {};

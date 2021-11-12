@@ -4,6 +4,10 @@ import RoomBuilderTileset from "./maps/tilesets/room-builder.png";
 import ThingsTileset from "./maps/tilesets/things.png";
 
 // Import TILEMAP JSONS
+import TilemapFloor4 from "./maps/hallways/floor-4.json";
+import TilemapFloor5 from "./maps/hallways/floor-5.json";
+import TilemapClassroom from "./maps/rooms/classroom.json";
+import TilemapsFestroom from "./maps/rooms/festroom.json";
 
 // Import SPRITESHEETS
 import SpritesheetArya from "./spritesheets/arya.png";
@@ -28,6 +32,14 @@ export const tilesets = {
 
 export const tiledTilemaps = {
   // Tiled Tilemap JSON names
+  hallways: {
+    floor4: TilemapFloor4,
+    floor5: TilemapFloor5,
+  },
+  rooms: {
+    classroom: TilemapClassroom,
+    festroom: TilemapsFestroom,
+  },
 };
 
 export const spritesheets = {
