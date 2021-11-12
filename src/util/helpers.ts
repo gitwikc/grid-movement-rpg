@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { Direction, Position } from "grid-engine";
 import GameScene from "../scenes/GameScene";
+import { Gender, House, SpritesheetData, spritesheets } from "./gameKeys";
 
 /**
  * Checks equality of pos.x and pos.y for two Positions
