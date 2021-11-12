@@ -28,15 +28,25 @@ export default class BootScene extends Phaser.Scene {
     // Load Tiled tilemap JSONs
 
     // Load the spritesheets
-    this.load.spritesheet(gameKeys.spritesheets.arya, spritesheets.arya);
-    this.load.spritesheet(gameKeys.spritesheets.sattwik, spritesheets.sattwik);
+    this.load.spritesheet(
+      gameKeys.spritesheets.arya,
+      spritesheets.arya,
+      this.createSpriteConfig(0)
+    );
+    this.load.spritesheet(
+      gameKeys.spritesheets.sattwik,
+      spritesheets.sattwik,
+      this.createSpriteConfig(0)
+    );
     this.load.spritesheet(
       gameKeys.spritesheets.studentF,
-      spritesheets.studentF
+      spritesheets.studentF,
+      { frameWidth: 64, frameHeight: 64 }
     );
     this.load.spritesheet(
       gameKeys.spritesheets.studentM,
-      spritesheets.studentM
+      spritesheets.studentM,
+      { frameWidth: 64, frameHeight: 64 }
     );
 
     // Load UI components

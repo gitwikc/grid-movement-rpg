@@ -8,9 +8,9 @@ const getCharWalkingAnimationMap = (playerIndex: number = 0) => ({
     rightFoot: playerIndex * 16 + 13,
   },
   right: {
-    leftFoot: playerIndex * 16 + 9,
-    standing: playerIndex * 16 + 8,
-    rightFoot: playerIndex * 16 + 11,
+    leftFoot: playerIndex * 16 + 10,
+    standing: playerIndex * 16 + 9,
+    rightFoot: playerIndex * 16 + 8,
   },
   down: {
     leftFoot: playerIndex * 16 + 3,

@@ -7,7 +7,7 @@ import ThingsTileset from "./maps/tilesets/things.png";
 
 // Import SPRITESHEETS
 import SpritesheetArya from "./spritesheets/arya.png";
-import SpritesheetSattwik from "./spritesheets.sattwik.png";
+import SpritesheetSattwik from "./spritesheets/sattwik.png";
 import SpritesheetStudentF from "./spritesheets/student-f.png";
 import SpritesheetStudentM from "./spritesheets/student-m.png";
 
