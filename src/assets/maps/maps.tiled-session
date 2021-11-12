@@ -3,24 +3,54 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "hallways/floor-5.tmx",
+    "activeFile": "hallways/floor-4.tmx",
     "expandedProjectPaths": [
-        "rooms",
-        "."
+        "tilesets",
+        ".",
+        "hallways",
+        "rooms"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 0.75,
+            "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "hallways/floor-4.tmx": {
+            "scale": 1,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 455,
+                "y": 354.5
+            }
+        },
+        "hallways/floor-4.tmx#furniture": {
+            "scaleInDock": 1
+        },
+        "hallways/floor-4.tmx#room": {
+            "scaleInDock": 1
+        },
+        "hallways/floor-4.tmx#things": {
+            "scaleInDock": 1
         },
         "hallways/floor-5.tmx": {
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 435,
-                "y": 3265.5
+                "x": 444,
+                "y": 1880.5
             }
+        },
+        "hallways/floor-5.tmx#furniture": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "hallways/floor-5.tmx#room": {
+            "scaleInDock": 1
+        },
+        "hallways/floor-5.tmx#things": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "map1.tmx": {
             "scale": 0.9351562499999999,
@@ -55,8 +85,8 @@
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 486.6666666666666,
-                "y": 453.99999999999994
+                "x": 466.6666666666666,
+                "y": 257.99999999999994
             }
         },
         "rooms/classroom.tmx#furniture": {
@@ -82,9 +112,15 @@
             "scaleInDock": 1
         },
         "tilesets/furniture.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "tilesets/room.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "tilesets/things.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         }
     },
@@ -98,20 +134,26 @@
     "map.tileWidth": 48,
     "map.width": 18,
     "openFiles": [
-        "hallways/floor-5.tmx"
+        "hallways/floor-5.tmx",
+        "rooms/classroom.tmx",
+        "hallways/floor-4.tmx",
+        "tilesets/things.tsx"
     ],
     "project": "maps.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "tilesets/furniture.tsx",
-        "tilesets/room.tsx",
         "hallways/floor-5.tmx",
         "rooms/classroom.tmx",
+        "tilesets/things.tsx",
+        "hallways/floor-4.tmx",
+        "tilesets/furniture.tsx",
+        "tilesets/room.tsx",
         "map2.tmx",
         "map1.tmx",
         "test.tmx"
     ],
-    "tileset.embedInMap": false,
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 48,
