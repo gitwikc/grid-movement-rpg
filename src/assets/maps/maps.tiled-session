@@ -3,12 +3,52 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "map2.tmx",
+    "activeFile": "hallways/floor-4.tmx",
     "expandedProjectPaths": [
+        "tilesets",
+        ".",
+        "hallways",
+        "rooms"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "hallways/floor-4.tmx": {
+            "scale": 1,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 455,
+                "y": 354.5
+            }
+        },
+        "hallways/floor-4.tmx#furniture": {
+            "scaleInDock": 1
+        },
+        "hallways/floor-4.tmx#room": {
+            "scaleInDock": 1
+        },
+        "hallways/floor-4.tmx#things": {
+            "scaleInDock": 1
+        },
+        "hallways/floor-5.tmx": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 444,
+                "y": 1880.5
+            }
+        },
+        "hallways/floor-5.tmx#furniture": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "hallways/floor-5.tmx#room": {
+            "scaleInDock": 1
+        },
+        "hallways/floor-5.tmx#things": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -41,12 +81,28 @@
         "map2.tmx#room": {
             "scaleInDock": 1
         },
+        "rooms/classroom.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 466.6666666666666,
+                "y": 257.99999999999994
+            }
+        },
+        "rooms/classroom.tmx#furniture": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "rooms/classroom.tmx#room": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
         "test.tmx": {
             "scale": 0.5727588383838383,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 769.0845963075228,
-                "y": 673.0581427390466
+                "x": 767.3386607880959,
+                "y": 671.3122072196197
             }
         },
         "test.tmx#furniture": {
@@ -54,29 +110,51 @@
         },
         "test.tmx#room": {
             "scaleInDock": 1
+        },
+        "tilesets/furniture.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/room.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "tilesets/things.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps",
-    "last.imagePath": "D:/Sattwik/media/pics/designs/game-assets/modern-interior-assets_limezu_itch.io/Modern tiles_Free/Interiors_free/48x48",
-    "map.height": 28,
+    "last.exportedFilePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/hallways",
+    "last.externalTilesetPath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/tilesets",
+    "last.imagePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/tilesets",
+    "map.height": 72,
     "map.lastUsedExportFilter": "JSON map files (*.json)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 48,
     "map.tileWidth": 48,
-    "map.width": 32,
+    "map.width": 18,
     "openFiles": [
-        "map1.tmx",
-        "map2.tmx",
-        "test.tmx"
+        "hallways/floor-5.tmx",
+        "rooms/classroom.tmx",
+        "hallways/floor-4.tmx",
+        "tilesets/things.tsx"
     ],
     "project": "maps.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "hallways/floor-5.tmx",
+        "rooms/classroom.tmx",
+        "tilesets/things.tsx",
+        "hallways/floor-4.tmx",
+        "tilesets/furniture.tsx",
+        "tilesets/room.tsx",
+        "map2.tmx",
         "map1.tmx",
-        "test.tmx",
-        "map2.tmx"
+        "test.tmx"
     ],
     "tileset.embedInMap": true,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 48,
         "width": 48
