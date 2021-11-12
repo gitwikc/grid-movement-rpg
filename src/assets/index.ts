@@ -6,6 +6,10 @@ import ThingsTileset from "./maps/tilesets/things.png";
 // Import TILEMAP JSONS
 
 // Import SPRITESHEETS
+import SpritesheetArya from "./spritesheets/arya.png";
+import SpritesheetSattwik from "./spritesheets.sattwik.png";
+import SpritesheetStudentF from "./spritesheets/student-f.png";
+import SpritesheetStudentM from "./spritesheets/student-m.png";
 
 import DialogExclm from "./ui/dialog-exclm.png";
 import DialogEllipsis from "./ui/dialog-ellps.png";
@@ -28,6 +32,10 @@ export const tiledTilemaps = {
 
 export const spritesheets = {
   // Spritesheet names
+  arya: SpritesheetArya,
+  sattwik: SpritesheetSattwik,
+  studentF: SpritesheetStudentF,
+  studentM: SpritesheetStudentM,
 };
 
 export const ui = {

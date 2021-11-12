@@ -1,5 +1,5 @@
 import { Position } from "grid-engine";
-import { tilesets, ui } from "../assets";
+import { tilesets, ui, spritesheets } from "../assets";
 import * as gameKeys from "../util/gameKeys";
 
 export default class BootScene extends Phaser.Scene {
@@ -28,6 +28,16 @@ export default class BootScene extends Phaser.Scene {
     // Load Tiled tilemap JSONs
 
     // Load the spritesheets
+    this.load.spritesheet(gameKeys.spritesheets.arya, spritesheets.arya);
+    this.load.spritesheet(gameKeys.spritesheets.sattwik, spritesheets.sattwik);
+    this.load.spritesheet(
+      gameKeys.spritesheets.studentF,
+      spritesheets.studentF
+    );
+    this.load.spritesheet(
+      gameKeys.spritesheets.studentM,
+      spritesheets.studentM
+    );
 
     // Load UI components
     this.load.image(gameKeys.uiImages.dialogueEllipsis, ui.dialogueEllps);

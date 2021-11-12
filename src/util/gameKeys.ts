@@ -22,9 +22,14 @@ export const tilesetImages = {
 
 export const tilemaps = {};
 
-export const spritesheets = {};
+export const spritesheets = {
+  arya: "spritesheet-arya",
+  sattwik: "spritesheet-sattwik",
+  studentF: "spritesheet-studentF",
+  studentM: "spritesheet-studentM",
+};
 
-export const scenes: { [key: string]: SceneData } = {};
+export const scenes = {};
 
 export const uiScenes = {
   Dialogue: "ui-dialogue",
@@ -34,3 +39,19 @@ export const uiImages = {
   dialogueExclaim: "dialog-exclm",
   dialogueEllipsis: "dialog-ellps",
 };
+
+/**
+ * Enumerator House for spritesheet index
+ * Pass this in getCharWalkingAnimationMap as index
+ */
+export enum House {
+  YELLOW = 0,
+  RED = 1,
+  BLUE = 2,
+  GREEN = 3,
+}
+
+export enum Gender {
+  FEMALE,
+  MALE,
+}
