@@ -1,7 +1,10 @@
 // @ts-nocheck
 import { Direction, Position } from "grid-engine";
+import { DialogAction } from "../scenes/Dialogue";
 import GameScene from "../scenes/GameScene";
 import { Gender, House, SpritesheetData, spritesheets } from "./gameKeys";
+import { SceneInteraction } from "./interactions";
+import { CharacterData } from "grid-engine";
 
 /**
  * Checks equality of pos.x and pos.y for two Positions
@@ -68,3 +71,68 @@ export const charactersF2F = (
   else if (positionsEqual(char2Facing, char1Position))
     scene.gridEngine.turnTowards(char1, oppositeDirections[char2Direction]);
 };
+
+/**
+ * Create a SceneInteraction with a signboard
+ *
+ * @param positions The Positions at which the signboard tiles are
+ * @param content The stuff written on the signboard
+ * @returns A SceneInteraction with the signboard
+ */
+export function createSignboardInteraction(
+  positions: Position[],
+  content: string[]
+): SceneInteraction {
+  return {
+    positions,
+    getInteraction: (scene, state) => ({
+      action: DialogAction.NORMAL,
+      dialogueSets: [{ speaker: "Signboard", content }],
+    }),
+  };
+}
+
+/**
+ * Create a walking animation map for a character
+ *
+ * @param charIndex The index of the character in its spritesheet
+ * @returns walking animation map for character as specified in grid-engine
+ */
+export const getCharWalkingAnimationMap = (charIndex: number = 0) => ({
+  up: {
+    leftFoot: charIndex * 16 + 15,
+    standing: charIndex * 16 + 12,
+    rightFoot: charIndex * 16 + 13,
+  },
+  right: {
+    leftFoot: charIndex * 16 + 10,
+    standing: charIndex * 16 + 9,
+    rightFoot: charIndex * 16 + 8,
+  },
+  down: {
+    leftFoot: charIndex * 16 + 3,
+    standing: charIndex * 16 + 0,
+    rightFoot: charIndex * 16 + 1,
+  },
+  left: {
+    leftFoot: charIndex * 16 + 7,
+    standing: charIndex * 16 + 4,
+    rightFoot: charIndex * 16 + 5,
+  },
+});
+
+export const createStudentCharacterConfig = (
+  id: string,
+  sprite: Phaser.GameObjects.Sprite,
+  house: House,
+  position: Position = { x: 0, y: 0 },
+  direction: Direction = Direction.DOWN
+): CharacterData => ({
+  id,
+  sprite,
+  collides: true,
+  speed: 4,
+  startPosition: position,
+  facingDirection: direction,
+  walkingAnimationMapping: getCharWalkingAnimationMap(house),
+});

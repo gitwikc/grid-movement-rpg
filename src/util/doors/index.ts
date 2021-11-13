@@ -11,7 +11,7 @@ import { Door } from "./types";
  * @param x1 X Position of entry in destination scene
  * @param y1 Y Position of entry in destination scene
  * @param direction Direction of entry
- * @param locked Is this door locked?
+ * @param isLocked Is this door locked?
  * @param updateState Function to update state when player enters this door
  * @returns A Door
  */
@@ -22,12 +22,12 @@ export const createDoor = (
   x1: number,
   y1: number,
   direction: Direction = Direction.DOWN,
-  locked: boolean = false,
+  isLocked: (state: GameState) => boolean = () => false,
   updateState?: (state: GameState) => void
 ): Door => ({
   position: { x: x0, y: y0 },
   dest: { sceneKey: destSceneKey, position: { x: x1, y: y1 }, direction },
-  locked,
+  isLocked,
   updateState,
 });
 
@@ -50,7 +50,7 @@ export const createDoors = (
   x1: number,
   y1: number,
   direction: Direction = Direction.DOWN,
-  locked: boolean = false,
+  isLocked: (state: GameState) => boolean = () => false,
   updateState?: (state: GameState) => void
 ): Door[] =>
   positions.map((position) =>
@@ -61,7 +61,9 @@ export const createDoors = (
       x1,
       y1,
       direction,
-      locked,
+      isLocked,
       updateState
     )
   );
+
+

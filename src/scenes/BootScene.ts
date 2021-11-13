@@ -74,9 +74,9 @@ export default class BootScene extends Phaser.Scene {
 
   create() {
     const spawnPosition: Position = {
-      x: 0,
-      y: 0,
+      x: 5,
+      y: 15,
     };
-    this.scene.start("KEY_TO_STARTING_SCENE", spawnPosition);
+    this.scene.start(gameKeys.scenes.floor5.hallway.key, spawnPosition);
   }
 }

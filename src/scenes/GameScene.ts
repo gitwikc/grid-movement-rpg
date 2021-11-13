@@ -5,7 +5,7 @@ import {
   GridEngineConfig,
   Position,
 } from "grid-engine";
-import getCharWalkingAnimationMap from "../util/walkAnim";
+import { getCharWalkingAnimationMap } from "../util/helpers";
 import * as gameKeys from "../util/gameKeys";
 import { Door } from "../util/doors/types";
 import gameStore from "../util/stores/gameStore";
@@ -33,8 +33,8 @@ export default class GameScene extends Phaser.Scene {
 
   constructor(
     private sceneData: gameKeys.SceneData,
-    protected doors: Door[],
     private playerSpriteData: gameKeys.SpriteData,
+    protected doors: Door[] = [],
     private characterInteractions?: CharacterInteractions,
     private sceneInteractions?: SceneInteraction[]
   ) {
@@ -61,12 +61,9 @@ export default class GameScene extends Phaser.Scene {
 
   createPlayerSprite(): void {
     // Create player sprite
-    this.playerSprite = this.add.sprite(
-      0,
-      0,
-      this.playerSpriteData.spritesheet.key,
-      0
-    );
+    this.playerSprite = this.add
+      .sprite(0, 0, this.playerSpriteData.spritesheet.key, 0)
+      .setScale(1.2);
   }
 
   /**
@@ -130,6 +127,9 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create(gridEngineConfig: GridEngineConfig) {
+    if (this.npcs)
+      Object.keys(this.npcs).forEach((key) => this.npcs[key]?.setScale(1.2));
+
     this.cameras.main.fadeIn(300);
 
     // Add the player character (same for all scenes, do it here)
@@ -241,10 +241,9 @@ export default class GameScene extends Phaser.Scene {
       if (doorAtCurrentPosition) {
         const { dest } = doorAtCurrentPosition;
 
-        if (doorAtCurrentPosition.updateState)
-          doorAtCurrentPosition.updateState(this.gameStore());
-
-        if (!doorAtCurrentPosition.locked) {
+        if (!doorAtCurrentPosition.isLocked(this.gameStore())) {
+          if (doorAtCurrentPosition.updateState)
+            doorAtCurrentPosition.updateState(this.gameStore());
           this.cameras.main.fadeOut(300, 0, 0, 0, () => {
             this.scene.start(dest.sceneKey, dest.position);
             this.scene.stop();

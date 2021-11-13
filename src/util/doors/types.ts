@@ -8,7 +8,7 @@ export interface Door {
     position: Position;
     direction: Direction;
   };
-  locked: boolean;
+  isLocked: (state: GameState) => boolean;
   updateState?: (state: GameState) => void;
 }
 

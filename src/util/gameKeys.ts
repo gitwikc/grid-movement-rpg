@@ -38,7 +38,60 @@ export const spritesheets = {
   studentM: { key: "spritesheet-studentM" },
 };
 
-export const scenes = {};
+export const scenes = {
+  floor4: {
+    hallway: {
+      key: "scene-hallway4",
+      tilemapKey: tilemaps.hallways.floor4,
+    },
+    f1: {
+      key: "scene-f1",
+      tilemapKey: tilemaps.rooms.festroom,
+    },
+    f2: {
+      key: "scene-f2",
+      tilemapKey: tilemaps.rooms.festroom,
+    },
+    f3: {
+      key: "scene-f3",
+      tilemapKey: tilemaps.rooms.festroom,
+    },
+    f4: {
+      key: "scene-f4",
+      tilemapKey: tilemaps.rooms.festroom,
+    },
+  },
+  floor5: {
+    hallway: {
+      key: "scene-hallway5",
+      tilemapKey: tilemaps.hallways.floor5,
+    },
+    c11a: {
+      key: "scene-11a",
+      tilemapKey: tilemaps.rooms.classroom,
+    },
+    c12c: {
+      key: "scene-12c",
+      tilemapKey: tilemaps.rooms.classroom,
+    },
+    c11c: {
+      key: "scene-11c",
+      tilemapKey: tilemaps.rooms.classroom,
+    },
+    c11b: {
+      key: "scene-11b",
+      tilemapKey: tilemaps.rooms.classroom,
+    },
+    c12b: {
+      key: "scene-12b",
+      tilemapKey: tilemaps.rooms.classroom,
+    },
+    c11d: {
+      key: "scene-11d",
+      tilemapKey: tilemaps.rooms.classroom,
+    },
+  },
+};
 
 export const uiScenes = {
   Dialogue: "ui-dialogue",
