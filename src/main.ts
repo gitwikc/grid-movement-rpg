@@ -33,7 +33,7 @@ const game = new Phaser.Game({
   plugins: {
     scene: [{ key: "gridEngine", plugin: GridEngine, mapping: "gridEngine" }],
   },
-  backgroundColor: 0x46c6f7,
+  backgroundColor: 0x212124,
   roundPixels: true,
   pixelArt: true,
 

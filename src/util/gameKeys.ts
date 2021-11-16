@@ -70,24 +70,8 @@ export const scenes = {
       key: "scene-11a",
       tilemapKey: tilemaps.rooms.classroom,
     },
-    c12c: {
-      key: "scene-12c",
-      tilemapKey: tilemaps.rooms.classroom,
-    },
     c11c: {
       key: "scene-11c",
-      tilemapKey: tilemaps.rooms.classroom,
-    },
-    c11b: {
-      key: "scene-11b",
-      tilemapKey: tilemaps.rooms.classroom,
-    },
-    c12b: {
-      key: "scene-12b",
-      tilemapKey: tilemaps.rooms.classroom,
-    },
-    c11d: {
-      key: "scene-11d",
       tilemapKey: tilemaps.rooms.classroom,
     },
   },

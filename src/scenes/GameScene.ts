@@ -18,6 +18,7 @@ import { DialogAction, dialogueSet } from "./Dialogue";
 import { charactersAreColliding, charactersF2F } from "../util/helpers";
 
 export default class GameScene extends Phaser.Scene {
+  [x: string]: any;
   protected playerSprite: Phaser.GameObjects.Sprite;
   protected npcs: { [key: string]: Phaser.GameObjects.Sprite | null };
   protected map: Phaser.Tilemaps.Tilemap;
@@ -174,8 +175,12 @@ export default class GameScene extends Phaser.Scene {
 
     if (this.controls.space.isDown) {
       this.gridEngine.setSpeed(this.playerSpriteData.name, 7);
+      if (this.gameStore().objectives.TEAM_SATTWIK)
+        this.gridEngine.setSpeed("sattwik", 7);
     } else {
       this.gridEngine.setSpeed(this.playerSpriteData.name, 4);
+      if (this.gameStore().objectives.TEAM_SATTWIK)
+        this.gridEngine.setSpeed("sattwik", 4);
     }
   }
 
@@ -265,6 +270,7 @@ export default class GameScene extends Phaser.Scene {
           this.events.on("resume", () => {
             console.log("In resume event of char inter");
             if (characterInteraction?.callback) characterInteraction.callback();
+            this.events.removeListener("resume");
           });
           this.launchDialogue(
             characterInteraction.action,

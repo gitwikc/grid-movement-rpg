@@ -1,4 +1,3 @@
-import GameScene from "../../../GameScene";
 import * as gameKeys from "../../../../util/gameKeys";
 import Classroom from "../../Classroom";
 import {
@@ -6,6 +5,8 @@ import {
   getCharWalkingAnimationMap,
 } from "../../../../util/helpers";
 import { Direction } from "grid-engine";
+import characterInteractions from "./cInt";
+import { sattwikFollowArya } from "../../../../util/commons";
 
 export default class C11C extends Classroom {
   constructor() {
@@ -14,9 +15,10 @@ export default class C11C extends Classroom {
       { x: 1, y: 25 },
       gameKeys.scenes.floor5.hallway.key,
       {
-        name: "Arya",
+        name: "arya",
         spritesheet: gameKeys.spritesheets.arya,
-      }
+      },
+      characterInteractions
     );
   }
 
@@ -27,7 +29,7 @@ export default class C11C extends Classroom {
       hrishi: this.add.sprite(0, 0, gameKeys.spritesheets.studentM.key),
       rishi: this.add.sprite(0, 0, gameKeys.spritesheets.studentM.key),
       sanskar: this.add.sprite(0, 0, gameKeys.spritesheets.studentM.key),
-      shuaib: this.add.sprite(0, 0, gameKeys.spritesheets.studentM.key),
+      neel: this.add.sprite(0, 0, gameKeys.spritesheets.studentM.key),
 
       samiksha: this.add.sprite(0, 0, gameKeys.spritesheets.studentF.key),
       nandika: this.add.sprite(0, 0, gameKeys.spritesheets.studentF.key),
@@ -60,9 +62,9 @@ export default class C11C extends Classroom {
           Direction.LEFT
         ),
         createStudentCharacterConfig(
-          "shuaib",
-          this.npcs.shuaib!,
-          gameKeys.House.RED,
+          "neel",
+          this.npcs.neel!,
+          gameKeys.House.YELLOW,
           { x: 14, y: 15 },
           Direction.DOWN
         ),
@@ -98,5 +100,8 @@ export default class C11C extends Classroom {
       ],
       collisionTilePropertyName: "collides",
     });
+
+    // Sattwik follows if on the team
+    sattwikFollowArya(this);
   }
 }

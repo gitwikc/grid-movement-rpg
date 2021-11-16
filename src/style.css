@@ -66,3 +66,29 @@ section#message > p#content {
   font-size: 0.7rem;
   line-height: 1.2rem;
 }
+
+canvas {
+  /* animation-name: drunk; */
+  animation-duration: 1200ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes drunk {
+  0% {
+    filter: blur(0px) hue-rotate(0deg);
+    transform: translateX(0);
+  }
+  25% {
+    filter: blur(2px) hue-rotate(120deg);
+    transform: translateX(10px);
+  }
+  75% {
+    filter: blur(4px) hue-rotate(240deg);
+    transform: translateX(-10px);
+  }
+  100% {
+    filter: blur(0px) hue-rotate(360deg);
+    transform: translateX(0);
+  }
+}
