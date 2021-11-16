@@ -59,6 +59,63 @@ const sceneInteractions: SceneInteraction[] = [
   createSignboardInteraction([{ x: 15, y: 48 }], ["To Terrace [LOCKED]"]),
   createSignboardInteraction([{ x: 1, y: 68 }], ["Girls' Washroom"]),
   createSignboardInteraction([{ x: 16, y: 68 }], ["Boys' Washroom"]),
+
+  {
+    positions: [
+      { x: 17, y: 69 },
+      { x: 17, y: 70 },
+    ],
+    getInteraction: (scene, state) => {
+      if (!state.objectives.TEAM_SATTWIK)
+        return {
+          action: DialogAction.NORMAL,
+          dialogueSets: [
+            {
+              speaker: "Arya",
+              content: [
+                "Toilet to locked hai",
+                "Yeh kya awaaz hai?",
+                "Packet khol rahe hain? Nikalta baba...",
+              ],
+            },
+          ],
+        };
+      else
+        return {
+          action: DialogAction.EXCLAIM,
+          dialogueSets: [
+            {
+              speaker: "Arya",
+              content: [
+                "Bro pichhli baar aya tha kuch ajib ho raha tha yaha",
+                "Packet vacket kholre the",
+              ],
+            },
+            {
+              speaker: "Sattwik",
+              content: [
+                "Andar se locked hai...",
+                "AREY! Ye dhua kya hai? Kahi yeh...",
+                "...",
+              ],
+            },
+            { speaker: "Arya", content: ["Arey yeh smell to...", "..."] },
+            { speaker: "Sattwik & Arya", content: ["OOOH NOOOOOOOOOOO!!!!!"] },
+          ],
+          callback: () => {
+            scene.cameras.main.shake(250, 0.02, true, () => {
+              const c = document.querySelector(
+                "#app > canvas"
+              ) as HTMLCanvasElement;
+              c.style.animationName = "drunk";
+              setTimeout(() => {
+                c.style.animationName = "";
+              }, 18e3);
+            });
+          },
+        };
+    },
+  },
 ];
 
 export default sceneInteractions;
