@@ -86,6 +86,10 @@ export const uiImages = {
   dialogueEllipsis: "dialog-ellps",
 };
 
+export const sounds = {
+  gnjGun: "sound-gnj",
+};
+
 /**
  * Enumerator House for spritesheet index
  * Pass this in getCharWalkingAnimationMap as index

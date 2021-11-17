@@ -33,9 +33,9 @@ const gameStore = create<GameState>(
       // Set all objectives to false at init
       MEET_SATTWIK: false,
       GET_PHY_NB: false,
-      TEAM_SATTWIK: true,
-      ASK_HRISHI: true,
-      ASK_SAMIKSHA: true,
+      TEAM_SATTWIK: false,
+      ASK_HRISHI: false,
+      ASK_SAMIKSHA: false,
       COUNTER_TOKENS: false,
       EAT_SNACKS: false,
     },

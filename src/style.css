@@ -4,7 +4,7 @@
   --color1: hsl(240, 80%, 60%);
   --color2: hsl(352, 89%, 65%);
 
-  --bg-dark: hsl(240, 13%, 15%);
+  --bg-dark: hsl(240, 6%, 13%);
   --game-font: "Press Start 2P";
 }
 
@@ -68,6 +68,8 @@ section#message > p#content {
 }
 
 canvas {
+  border-radius: 7px;
+
   /* animation-name: drunk; */
   animation-duration: 1200ms;
   animation-timing-function: linear;
@@ -77,18 +79,18 @@ canvas {
 @keyframes drunk {
   0% {
     filter: blur(0px) hue-rotate(0deg);
-    transform: translateX(0);
+    transform: translate(0, 0);
   }
   25% {
     filter: blur(2px) hue-rotate(120deg);
-    transform: translateX(10px);
+    transform: translate(10px, -10px);
   }
   75% {
     filter: blur(4px) hue-rotate(240deg);
-    transform: translateX(-10px);
+    transform: translate(-10px);
   }
   100% {
     filter: blur(0px) hue-rotate(360deg);
-    transform: translateX(0);
+    transform: translate(0, 10px);
   }
 }

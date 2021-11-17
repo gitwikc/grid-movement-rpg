@@ -1,3 +1,5 @@
+// @ts-nocheck
+import { sounds } from "../../../../util/gameKeys";
 import { createSignboardInteraction } from "../../../../util/helpers";
 import { SceneInteraction } from "../../../../util/interactions";
 import { DialogAction } from "../../../Dialogue";
@@ -108,9 +110,15 @@ const sceneInteractions: SceneInteraction[] = [
                 "#app > canvas"
               ) as HTMLCanvasElement;
               c.style.animationName = "drunk";
+
+              const music = scene.sound.add(sounds.gnjGun);
+              music.play();
+
               setTimeout(() => {
                 c.style.animationName = "";
-              }, 18e3);
+                music.stop();
+                music.destroy();
+              }, 24000);
             });
           },
         };

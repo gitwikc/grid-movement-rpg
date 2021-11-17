@@ -1,5 +1,5 @@
 import { Direction } from "grid-engine";
-import { createDoor, createDoors } from "../../../../util/doors";
+import { createDoors } from "../../../../util/doors";
 import { Door } from "../../../../util/doors/types";
 import * as gameKeys from "../../../../util/gameKeys";
 import gameStore from "../../../../util/stores/gameStore";

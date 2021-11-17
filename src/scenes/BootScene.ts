@@ -1,5 +1,5 @@
 import { Position } from "grid-engine";
-import { tilesets, ui, spritesheets, tiledTilemaps } from "../assets";
+import { tilesets, ui, spritesheets, tiledTilemaps, sounds } from "../assets";
 import * as gameKeys from "../util/gameKeys";
 
 export default class BootScene extends Phaser.Scene {
@@ -70,12 +70,13 @@ export default class BootScene extends Phaser.Scene {
     this.load.image(gameKeys.uiImages.dialogueExclaim, ui.dialogueExclm);
 
     // Load other assets
+    this.load.audio(gameKeys.sounds.gnjGun, sounds.gnjGun);
   }
 
   create() {
     const spawnPosition: Position = {
       x: 13,
-      y: 45,
+      y: 47,
     };
 
     this.scene.start(gameKeys.scenes.floor5.hallway.key, {

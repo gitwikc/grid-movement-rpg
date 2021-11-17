@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createSignboardInteraction } from "../../../../util/helpers";
 import { SceneInteraction } from "../../../../util/interactions";
 import festStore from "../../../../util/stores/festStore";

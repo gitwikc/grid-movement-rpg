@@ -12,11 +12,11 @@
             "scaleInDock": 1
         },
         "hallways/floor-4.tmx": {
-            "scale": 1,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 254,
-                "y": 2141.5
+                "x": 222,
+                "y": 2153
             }
         },
         "hallways/floor-4.tmx#furniture": {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import GameScene from "../../GameScene";
 import * as gameKeys from "../../../util/gameKeys";
 import { SceneInteraction } from "../../../util/interactions";

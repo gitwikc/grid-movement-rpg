@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CharacterData, Direction, Position } from "grid-engine";
 import { SceneData, spritesheets } from "../../util/gameKeys";
 import {

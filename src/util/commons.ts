@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CharacterData, Position } from "grid-engine";
 import { nanoid } from "nanoid";
 import { DialogAction } from "../scenes/Dialogue";

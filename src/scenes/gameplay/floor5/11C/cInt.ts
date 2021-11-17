@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CharacterInteractions } from "../../../../util/interactions";
 import { Objective } from "../../../../util/stores/gameStore";
 import { DialogAction } from "../../../Dialogue";
