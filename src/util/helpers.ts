@@ -136,3 +136,9 @@ export const createStudentCharacterConfig = (
   facingDirection: direction,
   walkingAnimationMapping: getCharWalkingAnimationMap(house),
 });
+
+export const getRandomHouse = (): House =>
+  House[Object.keys(House)[Math.floor(Math.random() * 4)]];
+
+export const getRandomGender = (): Gender =>
+  Gender[Object.keys(Gender)[Math.floor(Math.random() * 2)]];

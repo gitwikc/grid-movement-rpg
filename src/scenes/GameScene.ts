@@ -36,13 +36,13 @@ export default class GameScene extends Phaser.Scene {
     private sceneData: gameKeys.SceneData,
     private playerSpriteData: gameKeys.SpriteData,
     protected doors: Door[] = [],
-    private characterInteractions?: CharacterInteractions,
-    private sceneInteractions?: SceneInteraction[]
+    protected characterInteractions?: CharacterInteractions,
+    protected sceneInteractions?: SceneInteraction[]
   ) {
     super({ key: sceneData.key });
   }
 
-  init(spawnPosition: Position, direction: Direction) {
+  init({ spawnPosition, direction = Direction.DOWN }) {
     this.spawnPosition = spawnPosition;
     this.spawnDirection = direction;
     this.gameStore().setCurrentScene(this.scene.key);
@@ -229,9 +229,10 @@ export default class GameScene extends Phaser.Scene {
         )?.getInteraction(this, this.gameStore());
         if (interaction) {
           this.launchDialogue(interaction.action, interaction.dialogueSets);
-          this.events.on("resume", function () {
+          this.events.on("resume", () => {
             console.log("Resume callback in scene interaction");
             if (interaction?.callback) interaction.callback();
+            this.events.removeListener("resume");
           });
           // if (interaction?.callback) interaction.callback();
         }
@@ -250,7 +251,10 @@ export default class GameScene extends Phaser.Scene {
           if (doorAtCurrentPosition.updateState)
             doorAtCurrentPosition.updateState(this.gameStore());
           this.cameras.main.fadeOut(300, 0, 0, 0, () => {
-            this.scene.start(dest.sceneKey, dest.position);
+            this.scene.start(dest.sceneKey, {
+              spawnPosition: dest.position,
+              direction: dest.direction,
+            });
             this.scene.stop();
           });
         }

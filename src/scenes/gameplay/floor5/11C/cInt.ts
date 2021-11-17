@@ -144,6 +144,7 @@ const characterInteractions: CharacterInteractions = {
       return {
         action: DialogAction.EXCLAIM,
         dialogueSets: [{ speaker: "Hrishi", content: festInfo.hrishi }],
+        callback: () => state.completeObjective(Objective.ASK_HRISHI),
       };
     else
       return {
@@ -280,6 +281,7 @@ const characterInteractions: CharacterInteractions = {
           scene.gridEngine.follow("sattwik", "arya", 2, true);
         },
       };
+    return {};
   },
 };
 

@@ -1,21 +1,22 @@
 {
-    "activeFile": "rooms/classroom.tmx",
+    "activeFile": "hallways/floor-4.tmx",
     "expandedProjectPaths": [
-        ".",
-        "tilesets",
+        "hallways",
         "rooms",
-        "hallways"
+        ".",
+        "tilesets"
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1
         },
         "hallways/floor-4.tmx": {
-            "scale": 0.259765625,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 431.1578947368421,
-                "y": 1726.5563909774435
+                "x": 422,
+                "y": 700.5
             }
         },
         "hallways/floor-4.tmx#furniture": {
@@ -48,8 +49,8 @@
             "scale": 0.9242708333333333,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 480.3786768849318,
-                "y": 480.9196438634059
+                "x": 479.2967429279838,
+                "y": 479.83770990645775
             }
         },
         "rooms/classroom.tmx#furniture": {
@@ -62,7 +63,7 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 480,
+                "x": 416,
                 "y": 479.5
             }
         },
@@ -91,13 +92,13 @@
         "tilesets/things.tsx",
         "rooms/festroom.tmx"
     ],
-    "project": "",
+    "project": "maps.tiled-project",
     "recentFiles": [
         "hallways/floor-5.tmx",
+        "rooms/classroom.tmx",
         "rooms/festroom.tmx",
         "tilesets/things.tsx",
         "hallways/floor-4.tmx",
-        "rooms/classroom.tmx",
         "tilesets/furniture.tsx",
         "tilesets/room.tsx",
         "map2.tmx",

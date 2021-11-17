@@ -36,7 +36,8 @@ export default class Classroom extends GameScene {
         Classroom.CLASSROOM_DOOR_POSITIONS,
         exitDestSceneKey,
         exitDestPosition.x,
-        exitDestPosition.y
+        exitDestPosition.y,
+        exitDestPosition.x < 9 ? Direction.RIGHT : Direction.LEFT
       ),
       characterInteractions,
       sceneInteractions

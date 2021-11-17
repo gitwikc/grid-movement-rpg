@@ -1,4 +1,5 @@
-import create from "zustand";
+import create from "zustand/vanilla";
+import { devtools } from "zustand/middleware";
 
 export enum Snack {
   SAMOSA = "SAMOSA",
@@ -16,12 +17,17 @@ export interface FestState {
   snacksEaten: Snack[];
 }
 
-const festStore = create<FestState>((set) => ({
-  tokens: 0,
-  refillTokens: () => set({ tokens: 3 }),
-  snacksEaten: [],
-  useToken: (snack) =>
-    set((state) => ({ snacksEaten: [...state.snacksEaten, snack] })),
-}));
+const festStore = create<FestState>(
+  devtools((set) => ({
+    tokens: 0,
+    refillTokens: () => set({ tokens: 3 }),
+    snacksEaten: [],
+    useToken: (snack) =>
+      set((state) => ({
+        snacksEaten: [...state.snacksEaten, snack],
+        tokens: state.tokens - 1,
+      })),
+  }))
+);
 
 export default festStore;
