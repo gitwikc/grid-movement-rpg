@@ -2,12 +2,12 @@ import create from "zustand/vanilla";
 import { devtools } from "zustand/middleware";
 
 export enum Snack {
-  SAMOSA = "SAMOSA",
-  SPRING_ROLL = "SPRING_ROLL",
-  KULFI = "KULFI",
-  FRUIT_CHAAT = "FRUIT_CHAAT",
+  SAMOSA = "Samosa",
+  SPRING_ROLL = "Spring roll",
+  KULFI = "Kulfi",
+  FRUIT_CHAAT = "Fruit chaat",
   SPDP = "SPDP",
-  PANI_PURI = "PANI_PURI",
+  PANI_PURI = "Pani puri",
 }
 
 export interface FestState {

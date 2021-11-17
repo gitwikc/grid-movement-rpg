@@ -1,9 +1,12 @@
 import { CharacterData, Position } from "grid-engine";
 import { nanoid } from "nanoid";
+import { DialogAction } from "../scenes/Dialogue";
 import GameScene from "../scenes/GameScene";
 import { Gender, House, spritesheets } from "../util/gameKeys";
 import { getCharWalkingAnimationMap } from "./helpers";
-import gameStore from "./stores/gameStore";
+import { Interaction, SceneInteraction } from "./interactions";
+import festStore, { Snack } from "./stores/festStore";
+import gameStore, { GameState } from "./stores/gameStore";
 
 export const sattwikCharacterData = (scene: GameScene): CharacterData => ({
   id: "sattwik",
@@ -25,7 +28,7 @@ export const sattwikFollowArya = (scene: GameScene): void => {
       "sattwik",
       scene.gridEngine.getFacingDirection("arya")
     );
-    scene.gridEngine.follow("sattwik", "arya", 2, true);
+    scene.gridEngine.follow("sattwik", "arya", 1, true);
   }
 };
 
@@ -48,4 +51,81 @@ export const createStudentCharacter = (
   collides: true,
   startPosition: position,
   walkingAnimationMapping: getCharWalkingAnimationMap(house),
+});
+
+export const getStallInteraction =
+  (snack: Snack) =>
+  (scene: GameScene, state: GameState): Interaction => {
+    const fest = festStore.getState();
+
+    if (fest.snacksEaten.indexOf(snack) === -1) {
+      if (fest.tokens > 0)
+        return {
+          action: DialogAction.EXCLAIM,
+          dialogueSets: [
+            { speaker: "Arya & Sattwik", content: [`Do ${snack} dena`] },
+            {
+              speaker: "Arya",
+              content: [
+                "*Uses mad negotiation skill*",
+                "$$CHA-CHING!$$ Saste mein milega bro hehe!",
+              ],
+            },
+            {
+              speaker: `${snack} seller`,
+              content: [
+                "Token please",
+                "OK 2 min",
+                "...",
+                "...",
+                "yeh lo ban gaya!",
+              ],
+            },
+          ],
+          callback: () => fest.useToken(snack),
+        };
+      else
+        return {
+          action: DialogAction.NORMAL,
+          dialogueSets: [
+            {
+              speaker: `${snack} seller`,
+              content: [
+                "Kya re langar laga hai kya re?",
+                "Phokat ka nahi milta idhar kuch",
+                "Nikal! <█┘",
+              ],
+            },
+            {
+              speaker: "Arya",
+              content: ["Gajab bezzati hai"],
+            },
+          ],
+        };
+    } else
+      return {
+        action: DialogAction.NORMAL,
+        dialogueSets: [
+          {
+            speaker: "Sattwik",
+            content: [`Bhai ${snack} to kha liya`, "Kuch aur khaate hai chal"],
+          },
+        ],
+      };
+  };
+
+export const getOutOfStockInteraction = (
+  scene: GameScene,
+  state: GameState
+): Interaction => ({
+  action: DialogAction.NORMAL,
+  dialogueSets: [
+    {
+      speaker: "Student",
+      content: [
+        "Out of stock hai abhi",
+        "Abhi maal nahi milenga chalo aagey badho",
+      ],
+    },
+  ],
 });
