@@ -1,5 +1,5 @@
 import { CharacterData, Direction, Position } from "grid-engine";
-import { spritesheets } from "../../util/gameKeys";
+import { SceneData, spritesheets } from "../../util/gameKeys";
 import {
   getStallInteraction,
   getOutOfStockInteraction,
@@ -57,10 +57,14 @@ export default class Festroom extends Classroom {
     },
   ];
 
-  constructor(protected sellers: Seller[]) {
+  constructor(
+    sceneData: SceneData,
+    exitPosition: Position,
+    protected sellers: Seller[]
+  ) {
     super(
-      scenes.floor4.f1,
-      { x: 16, y: 13 },
+      sceneData,
+      exitPosition,
       scenes.floor4.hallway.key,
       { name: "arya", spritesheet: spritesheets.arya },
       {

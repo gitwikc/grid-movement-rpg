@@ -4,9 +4,9 @@ import { DialogAction } from "../scenes/Dialogue";
 import GameScene from "../scenes/GameScene";
 import { Gender, House, spritesheets } from "../util/gameKeys";
 import { getCharWalkingAnimationMap } from "./helpers";
-import { Interaction, SceneInteraction } from "./interactions";
+import { Interaction } from "./interactions";
 import festStore, { Snack } from "./stores/festStore";
-import gameStore, { GameState } from "./stores/gameStore";
+import gameStore, { GameState, Objective } from "./stores/gameStore";
 
 export const sattwikCharacterData = (scene: GameScene): CharacterData => ({
   id: "sattwik",
@@ -81,8 +81,35 @@ export const getStallInteraction =
                 "yeh lo ban gaya!",
               ],
             },
+            {
+              speaker: "Arya",
+              content: ["*...yum...*"],
+            },
+            {
+              speaker: "Sattwik",
+              content: ["*...yum...*"],
+            },
           ],
-          callback: () => fest.useToken(snack),
+          callback: () => {
+            fest.useToken(snack);
+            if (
+              festStore.getState().snacksEaten.length ===
+              Object.keys(Snack).length
+            ) {
+              state.completeObjective(Objective.EAT_SNACKS);
+
+              scene.launchDialogue(DialogAction.EXCLAIM, [
+                {
+                  speaker: "Sattwik",
+                  content: [
+                    "Yayy!!! Bhai sab kha liya",
+                    "Pet full ho gaya",
+                    "Chal class mein lautke baat karte",
+                  ],
+                },
+              ]);
+            }
+          },
         };
       else
         return {
@@ -102,7 +129,7 @@ export const getStallInteraction =
             },
           ],
         };
-    } else
+    } else if (!state.objectives.EAT_SNACKS)
       return {
         action: DialogAction.NORMAL,
         dialogueSets: [
@@ -112,6 +139,20 @@ export const getStallInteraction =
           },
         ],
       };
+    else {
+      return {
+        action: DialogAction.NORMAL,
+        dialogueSets: [
+          {
+            speaker: "Sattwik",
+            content: [
+              "Bro pet full.. Ab aur nahi khaate rehnde uff....",
+              "Chal class mein chalke baat karte",
+            ],
+          },
+        ],
+      };
+    }
   };
 
 export const getOutOfStockInteraction = (

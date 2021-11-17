@@ -23,10 +23,14 @@ const festStore = create<FestState>(
     refillTokens: () => set({ tokens: 3 }),
     snacksEaten: [],
     useToken: (snack) =>
-      set((state) => ({
-        snacksEaten: [...state.snacksEaten, snack],
-        tokens: state.tokens - 1,
-      })),
+      set((state) => {
+        if (state.snacksEaten.indexOf(snack) === -1)
+          return {
+            snacksEaten: [...state.snacksEaten, snack],
+            tokens: state.tokens - 1,
+          };
+        return {...state}
+      }),
   }))
 );
 

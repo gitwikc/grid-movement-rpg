@@ -2,6 +2,7 @@ import { CharacterInteractions } from "../../../../util/interactions";
 import { Objective } from "../../../../util/stores/gameStore";
 import { DialogAction } from "../../../Dialogue";
 import festInfo from "./festInfo.json";
+import endDialogue from "./endDlg.json";
 
 const characterInteractions: CharacterInteractions = {
   rishi: (scene, state) => ({
@@ -279,6 +280,14 @@ const characterInteractions: CharacterInteractions = {
         callback: () => {
           state.completeObjective(Objective.TEAM_SATTWIK);
           scene.gridEngine.follow("sattwik", "arya", 2, true);
+        },
+      };
+    else if (state.objectives.EAT_SNACKS)
+      return {
+        action: DialogAction.EXCLAIM,
+        dialogueSets: endDialogue,
+        callback: () => {
+          // TODO Show ending scene
         },
       };
     return {};

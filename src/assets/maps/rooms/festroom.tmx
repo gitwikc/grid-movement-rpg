@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="12" nextobjectid="4">
  <editorsettings>
-  <export target="map2.json" format="json"/>
+  <export target="festroom.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="furniture" tilewidth="48" tileheight="48" tilecount="1424" columns="16">
   <image source="../tilesets/interior.png" width="768" height="4272"/>
@@ -255,6 +255,11 @@
     <property name="collides" type="bool" value="true"/>
    </properties>
   </tile>
+  <tile id="171">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
   <tile id="177">
    <properties>
     <property name="collides" type="bool" value="true"/>
@@ -285,7 +290,32 @@
     <property name="collides" type="bool" value="true"/>
    </properties>
   </tile>
+  <tile id="187">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="188">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
   <tile id="214">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="231">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="232">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="233">
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
@@ -497,12 +527,12 @@
   </tile>
   <tile id="581">
    <properties>
-    <property name="collides" type="bool" value="true"/>
+    <property name="collides" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="582">
    <properties>
-    <property name="collides" type="bool" value="true"/>
+    <property name="collides" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="583">
@@ -521,6 +551,16 @@
    </properties>
   </tile>
   <tile id="588">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="597">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="598">
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
@@ -590,6 +630,36 @@
     <property name="collides" type="bool" value="true"/>
    </properties>
   </tile>
+  <tile id="631">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="632">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="633">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="634">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="635">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="636">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
   <tile id="642">
    <properties>
     <property name="collides" type="bool" value="true"/>
@@ -617,15 +687,35 @@
   </tile>
   <tile id="647">
    <properties>
-    <property name="collides" type="bool" value="true"/>
+    <property name="collides" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="648">
    <properties>
-    <property name="collides" type="bool" value="true"/>
+    <property name="collides" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="649">
+   <properties>
+    <property name="collides" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="663">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="664">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="665">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="668">
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
@@ -661,6 +751,11 @@
    </properties>
   </tile>
   <tile id="748">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="800">
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
@@ -4092,13 +4187,10 @@
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,1818,0,0,0,0,0,1818,0,0,0,0,0,0,0,0,
-0,0,0,0,0,1817,0,0,0,0,0,1817,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,189,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,189,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,189,0,0,0,1818,0,0,0,0,0,1818,0,0,0,0,0,0,0,0,
+189,189,0,0,0,1817,0,0,0,0,0,1817,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -4107,9 +4199,12 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,189,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,189,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,189,0,0,189,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,189,0,0,189,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,189,0,0,189,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,189,189,189,189,189,189,189
 </data>
  </layer>
  <layer id="5" name="furniture1" width="20" height="20">

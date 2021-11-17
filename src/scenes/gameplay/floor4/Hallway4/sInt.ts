@@ -9,7 +9,7 @@ const sceneInteractions: SceneInteraction[] = [
   createSignboardInteraction([{ x: 10, y: 6 }], ["Token counter"]),
   createSignboardInteraction(
     [{ x: 16, y: 12 }],
-    ["Food Fest Room 1", "Chat, Pani puri"]
+    ["Food Fest Room 1", "SPDP, Pani puri"]
   ),
   createSignboardInteraction(
     [{ x: 16, y: 19 }],
