@@ -7,6 +7,7 @@ import {
 import { Direction } from "grid-engine";
 import characterInteractions from "./cInt";
 import { sattwikFollowArya } from "../../../../util/commons";
+import sceneInteractions from "./sInt";
 
 export default class C11C extends Classroom {
   constructor() {
@@ -18,7 +19,8 @@ export default class C11C extends Classroom {
         name: "arya",
         spritesheet: gameKeys.spritesheets.arya,
       },
-      characterInteractions
+      characterInteractions,
+      sceneInteractions
     );
   }
 

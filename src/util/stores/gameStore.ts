@@ -31,13 +31,13 @@ const gameStore = create<GameState>(
   devtools((set) => ({
     objectives: {
       // Set all objectives to false at init
-      MEET_SATTWIK: false,
-      GET_PHY_NB: false,
-      TEAM_SATTWIK: false,
-      ASK_HRISHI: false,
-      ASK_SAMIKSHA: false,
-      COUNTER_TOKENS: false,
-      EAT_SNACKS: false,
+      MEET_SATTWIK: true,
+      GET_PHY_NB: true,
+      TEAM_SATTWIK: true,
+      ASK_HRISHI: true,
+      ASK_SAMIKSHA: true,
+      COUNTER_TOKENS: true,
+      EAT_SNACKS: true,
     },
     completeObjective: (objective: Objective) =>
       set((state) => {

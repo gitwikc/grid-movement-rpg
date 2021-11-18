@@ -2,6 +2,7 @@
 import { sounds } from "../../../../util/gameKeys";
 import { createSignboardInteraction } from "../../../../util/helpers";
 import { SceneInteraction } from "../../../../util/interactions";
+import musicStore from "../../../../util/stores/musicStore";
 import { DialogAction } from "../../../Dialogue";
 
 const sceneInteractions: SceneInteraction[] = [
@@ -64,8 +65,8 @@ const sceneInteractions: SceneInteraction[] = [
 
   {
     positions: [
-      { x: 17, y: 69 },
-      { x: 17, y: 70 },
+      { x: 18, y: 69 },
+      { x: 18, y: 70 },
     ],
     getInteraction: (scene, state) => {
       if (!state.objectives.TEAM_SATTWIK)
@@ -111,14 +112,24 @@ const sceneInteractions: SceneInteraction[] = [
               ) as HTMLCanvasElement;
               c.style.animationName = "drunk";
 
-              const music = scene.sound.add(sounds.gnjGun);
+              const bgMusic = musicStore.getState();
+              bgMusic.current?.pause();
+
+              const music = scene.sound.add(sounds.gnjGun, {
+                volume: 0.3,
+              });
               music.play();
 
-              setTimeout(() => {
-                c.style.animationName = "";
-                music.stop();
-                music.destroy();
-              }, 24000);
+              music.once(
+                "complete",
+                (music) => {
+                  c.style.animationName = "";
+                  music.stop();
+                  music.destroy();
+                  bgMusic.current?.resume();
+                },
+                24000
+              );
             });
           },
         };
