@@ -6,7 +6,7 @@ export default class EndScene extends Phaser.Scene {
   }
 
   create() {
-    this.cameras.main.fadeIn(100, 0, 0, 0, () => {
+    this.cameras.main.fadeIn(400, 0, 0, 0, () => {
       const image = this.add.image(0, 0, uiImages.endImg).setScale(0.3);
       image.setOrigin(0, 0);
     });

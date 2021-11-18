@@ -113,23 +113,15 @@ const sceneInteractions: SceneInteraction[] = [
               c.style.animationName = "drunk";
 
               const bgMusic = musicStore.getState();
-              bgMusic.current?.pause();
+              bgMusic.current?.stop();
 
-              const music = scene.sound.add(sounds.gnjGun, {
-                volume: 0.3,
+              const music = scene.sound.add(sounds.gnjGun);
+              music.play({ volume: 0.3 });
+
+              music.once("complete", () => {
+                c.style.animationName = "";
+                bgMusic.current?.play();
               });
-              music.play();
-
-              music.once(
-                "complete",
-                (music) => {
-                  c.style.animationName = "";
-                  music.stop();
-                  music.destroy();
-                  bgMusic.current?.resume();
-                },
-                24000
-              );
             });
           },
         };
