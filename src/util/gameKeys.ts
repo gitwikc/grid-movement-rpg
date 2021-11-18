@@ -21,50 +21,92 @@ export const tilesetImages = {
 };
 
 export const tilemaps = {
-  map1: "tilemap-map1",
-  map2: "tilemap-map2",
-  test: "tilemap-test",
+  hallways: {
+    floor4: "tilemap-floor4",
+    floor5: "tilemap-floor5",
+  },
+  rooms: {
+    classroom: "tilemaps-classroom",
+    festroom: "tilemaps-festroom",
+  },
 };
 
 export const spritesheets = {
-  player: {
-    key: "spritesheet-player",
-    index: 0,
-  },
-  ash: {
-    key: "spritesheet-ash",
-    index: 1,
-  },
-  gary: {
-    key: "spritesheet-gary",
-    index: 2,
-  },
+  arya: { key: "spritesheet-arya", index: 0 },
+  sattwik: { key: "spritesheet-sattwik", index: 0 },
+  studentF: { key: "spritesheet-studentF" },
+  studentM: { key: "spritesheet-studentM" },
 };
 
 export const scenes = {
-  garden: {
-    key: "scene-garden",
-    tilemapKey: tilemaps.map1,
+  floor4: {
+    hallway: {
+      key: "scene-hallway4",
+      tilemapKey: tilemaps.hallways.floor4,
+    },
+    f1: {
+      key: "scene-f1",
+      tilemapKey: tilemaps.rooms.festroom,
+    },
+    f2: {
+      key: "scene-f2",
+      tilemapKey: tilemaps.rooms.festroom,
+    },
+    f3: {
+      key: "scene-f3",
+      tilemapKey: tilemaps.rooms.festroom,
+    },
+    f4: {
+      key: "scene-f4",
+      tilemapKey: tilemaps.rooms.festroom,
+    },
   },
-  library: {
-    key: "scene-library",
-    tilemapKey: tilemaps.test,
-  },
-  classroom: {
-    key: "scene-classroom",
-    tilemapKey: tilemaps.map2,
-  },
-  endscene: {
-    key: "scene-endscene",
+  floor5: {
+    hallway: {
+      key: "scene-hallway5",
+      tilemapKey: tilemaps.hallways.floor5,
+    },
+    c11a: {
+      key: "scene-11a",
+      tilemapKey: tilemaps.rooms.classroom,
+    },
+    c11c: {
+      key: "scene-11c",
+      tilemapKey: tilemaps.rooms.classroom,
+    },
   },
 };
 
 export const uiScenes = {
   Dialogue: "ui-dialogue",
+  EndScene: "scene-endscene",
 };
 
 export const uiImages = {
   dialogueExclaim: "dialog-exclm",
   dialogueEllipsis: "dialog-ellps",
-  anoopSoni: "anoop-soni",
+  endImg: "end-img",
 };
+
+export const sounds = {
+  gnjGun: "sound-gnj",
+  rasoda: "sound-rasoda",
+  coffinDanceMonkey: "sound-coffin-dance-monkey",
+  treatYouBetter: "sound-treat-you-better",
+};
+
+/**
+ * Enumerator House for spritesheet index
+ * Pass this in getCharWalkingAnimationMap as index
+ */
+export enum House {
+  YELLOW = 0,
+  RED = 1,
+  BLUE = 2,
+  GREEN = 3,
+}
+
+export enum Gender {
+  FEMALE,
+  MALE,
+}

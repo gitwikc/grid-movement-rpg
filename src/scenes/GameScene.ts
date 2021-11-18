@@ -5,29 +5,26 @@ import {
   GridEngineConfig,
   Position,
 } from "grid-engine";
-import getCharWalkingAnimationMap from "../util/walkAnim";
-import playerWalkingAnimationMap from "../util/walkAnim";
+import { getCharWalkingAnimationMap } from "../util/helpers";
 import * as gameKeys from "../util/gameKeys";
-import { Door, getDoorsForScene } from "../util/doors";
+import { Door } from "../util/doors/types";
 import gameStore from "../util/stores/gameStore";
 import {
   CharacterInteractions,
   getSceneInteraction,
-  Interaction,
   SceneInteraction,
 } from "../util/interactions";
 import { DialogAction, dialogueSet } from "./Dialogue";
 import { charactersAreColliding, charactersF2F } from "../util/helpers";
 
 export default class GameScene extends Phaser.Scene {
+  [x: string]: any;
   protected playerSprite: Phaser.GameObjects.Sprite;
   protected npcs: { [key: string]: Phaser.GameObjects.Sprite | null };
   protected map: Phaser.Tilemaps.Tilemap;
 
   protected spawnPosition: Position = { x: 0, y: 0 };
   protected spawnDirection: Direction = Direction.DOWN;
-
-  protected doors: Door[];
 
   protected gameStore = gameStore.getState;
 
@@ -38,14 +35,14 @@ export default class GameScene extends Phaser.Scene {
   constructor(
     private sceneData: gameKeys.SceneData,
     private playerSpriteData: gameKeys.SpriteData,
-    private characterInteractions?: CharacterInteractions,
-    private sceneInteractions?: SceneInteraction[]
+    protected doors: Door[] = [],
+    protected characterInteractions?: CharacterInteractions,
+    protected sceneInteractions?: SceneInteraction[]
   ) {
     super({ key: sceneData.key });
-    this.doors = getDoorsForScene(sceneData.key);
   }
 
-  init(spawnPosition: Position, direction: Direction) {
+  init({ spawnPosition, direction = Direction.DOWN }) {
     this.spawnPosition = spawnPosition;
     this.spawnDirection = direction;
     this.gameStore().setCurrentScene(this.scene.key);
@@ -65,15 +62,16 @@ export default class GameScene extends Phaser.Scene {
 
   createPlayerSprite(): void {
     // Create player sprite
-    this.playerSprite = this.add.sprite(
-      0,
-      0,
-      this.playerSpriteData.spritesheet.key,
-      0
-    );
+    this.playerSprite = this.add
+      .sprite(0, 0, this.playerSpriteData.spritesheet.key, 0)
+      .setScale(1.2);
   }
 
-  get playerPos() {
+  /**
+   * The player sprite's Position in pixels on the map.
+   * NOT the player sprite's current grid Position
+   */
+  get playerSpritePosition() {
     return {
       x: Math.round(this.playerSprite.x),
       y: Math.round(this.playerSprite.y),
@@ -101,7 +99,6 @@ export default class GameScene extends Phaser.Scene {
     });
   }
   setupCamera(): void {
-    // Configure camera to folow playerSprite
     this.cameras.main.startFollow(this.playerSprite);
     this.cameras.main.setLerp(
       this.CAMERA_FOLLOW_SPEED,
@@ -109,7 +106,6 @@ export default class GameScene extends Phaser.Scene {
     );
     this.cameras.main.setRoundPixels(true);
 
-    // World and camera bounds
     this.physics.world.setBounds(
       0,
       0,
@@ -125,14 +121,16 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.createControlKeys(); // Same for all scenes
-    // this.createNPCSprites(); Called in child class
-    this.createPlayerSprite(); // Same for all sprites
-    this.createMap(); // Same for all
-    this.setupCamera(); // Same for all scenes
+    this.createControlKeys();
+    this.createPlayerSprite();
+    this.createMap();
+    this.setupCamera();
   }
 
   create(gridEngineConfig: GridEngineConfig) {
+    if (this.npcs)
+      Object.keys(this.npcs).forEach((key) => this.npcs[key]?.setScale(1.2));
+
     this.cameras.main.fadeIn(300);
 
     // Add the player character (same for all scenes, do it here)
@@ -177,8 +175,12 @@ export default class GameScene extends Phaser.Scene {
 
     if (this.controls.space.isDown) {
       this.gridEngine.setSpeed(this.playerSpriteData.name, 7);
+      if (this.gameStore().objectives.TEAM_SATTWIK)
+        this.gridEngine.setSpeed("sattwik", 7);
     } else {
       this.gridEngine.setSpeed(this.playerSpriteData.name, 4);
+      if (this.gameStore().objectives.TEAM_SATTWIK)
+        this.gridEngine.setSpeed("sattwik", 4);
     }
   }
 
@@ -227,9 +229,10 @@ export default class GameScene extends Phaser.Scene {
         )?.getInteraction(this, this.gameStore());
         if (interaction) {
           this.launchDialogue(interaction.action, interaction.dialogueSets);
-          this.events.on("resume", function () {
+          this.events.on("resume", () => {
             console.log("Resume callback in scene interaction");
             if (interaction?.callback) interaction.callback();
+            this.events.removeListener("resume");
           });
           // if (interaction?.callback) interaction.callback();
         }
@@ -244,12 +247,14 @@ export default class GameScene extends Phaser.Scene {
       if (doorAtCurrentPosition) {
         const { dest } = doorAtCurrentPosition;
 
-        if (doorAtCurrentPosition.updateState)
-          doorAtCurrentPosition.updateState(this.gameStore());
-
-        if (!doorAtCurrentPosition.locked) {
+        if (!doorAtCurrentPosition.isLocked(this.gameStore())) {
+          if (doorAtCurrentPosition.updateState)
+            doorAtCurrentPosition.updateState(this.gameStore());
           this.cameras.main.fadeOut(300, 0, 0, 0, () => {
-            this.scene.start(dest.sceneKey, dest.position);
+            this.scene.start(dest.sceneKey, {
+              spawnPosition: dest.position,
+              direction: dest.direction,
+            });
             this.scene.stop();
           });
         }
@@ -269,13 +274,13 @@ export default class GameScene extends Phaser.Scene {
           this.events.on("resume", () => {
             console.log("In resume event of char inter");
             if (characterInteraction?.callback) characterInteraction.callback();
+            this.events.removeListener("resume");
           });
           this.launchDialogue(
             characterInteraction.action,
             characterInteraction.dialogueSets
           );
         }
-        // if (characterInteraction?.callback) characterInteraction.callback();
       }
     });
   }

@@ -3,21 +3,30 @@ import InteriorTileset from "./maps/tilesets/interior.png";
 import RoomBuilderTileset from "./maps/tilesets/room-builder.png";
 import ThingsTileset from "./maps/tilesets/things.png";
 
-import Map1Tilemap from "./maps/map1.json";
-import Map2Tilemap from "./maps/map2.json";
-import TestTilemap from "./maps/test.json";
+// Import TILEMAP JSONS
+import TilemapFloor4 from "./maps/hallways/floor-4.json";
+import TilemapFloor5 from "./maps/hallways/floor-5.json";
+import TilemapClassroom from "./maps/rooms/classroom.json";
+import TilemapsFestroom from "./maps/rooms/festroom.json";
 
-import PlayerSpriteSheet from "./sprites/player.png";
-import AshSpriteSheet from "./sprites/ash.png";
-import CombinedSheet from "./sprites/spritesheet.png";
+// Import SPRITESHEETS
+import SpritesheetArya from "./spritesheets/arya.png";
+import SpritesheetSattwik from "./spritesheets/sattwik.png";
+import SpritesheetStudentF from "./spritesheets/student-f.png";
+import SpritesheetStudentM from "./spritesheets/student-m.png";
 
 import DialogExclm from "./ui/dialog-exclm.png";
 import DialogEllipsis from "./ui/dialog-ellps.png";
 
-import AnoopSoni from "./ui/anoop-soni.jpg";
+// Import Music
+import GnjGun from "./sounds/ooo.mp3";
+import TreatYouBetter from "./sounds/treat-you-better.mp3";
+import Rasoda from "./sounds/rasoda.mp3";
+import CoffinDanceMonkey from "./sounds/coffin-dance-monkey.mp3";
 
 import Cursor from "../assets/ui/cursor.png";
 import CursorDown from "../assets/ui/cursor-down.png";
+import EndImg from "../assets/ui/end-img.png";
 
 export const tilesets = {
   ground: GroundTileset,
@@ -27,21 +36,36 @@ export const tilesets = {
 };
 
 export const tiledTilemaps = {
-  map1: Map1Tilemap,
-  map2: Map2Tilemap,
-  test: TestTilemap,
+  // Tiled Tilemap JSON names
+  hallways: {
+    floor4: TilemapFloor4,
+    floor5: TilemapFloor5,
+  },
+  rooms: {
+    classroom: TilemapClassroom,
+    festroom: TilemapsFestroom,
+  },
 };
 
 export const spritesheets = {
-  player: PlayerSpriteSheet,
-  ash: AshSpriteSheet,
-  combined: CombinedSheet,
+  // Spritesheet names
+  arya: SpritesheetArya,
+  sattwik: SpritesheetSattwik,
+  studentF: SpritesheetStudentF,
+  studentM: SpritesheetStudentM,
 };
 
 export const ui = {
   dialogueEllps: DialogEllipsis,
   dialogueExclm: DialogExclm,
-  anoopSoni: AnoopSoni,
   cursor: Cursor,
   cursorDown: CursorDown,
+  endImg: EndImg,
+};
+
+export const sounds = {
+  gnjGun: GnjGun,
+  treatYouBetter: TreatYouBetter,
+  rasoda: Rasoda,
+  coffinDanceMonkey: CoffinDanceMonkey,
 };

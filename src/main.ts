@@ -1,12 +1,11 @@
 import Phaser from "phaser";
 import { GridEngine } from "grid-engine";
 import BootScene from "./scenes/BootScene";
-import ClassroomScene from "./scenes/ClassroomScene";
 import Dialogue from "./scenes/Dialogue";
-import GardenScene from "./scenes/GardenScene";
-import LibraryScene from "./scenes/LibraryScene";
-import EndScene from "./scenes/EndScene";
 import { ui } from "./assets";
+import floor5 from "./scenes/gameplay/floor5";
+import floor4 from "./scenes/gameplay/floor4";
+import EndScene from "./scenes/EndScene";
 
 const app = document.getElementById("app")!;
 app.onmousedown = () => {
@@ -15,7 +14,7 @@ app.onmousedown = () => {
 app.onmouseup = () => {
   window.setTimeout(() => {
     app.style.cursor = `url(${ui.cursor}), auto`;
-  }, 400);
+  }, 120);
 };
 
 // @ts-ignore
@@ -36,15 +35,10 @@ const game = new Phaser.Game({
   plugins: {
     scene: [{ key: "gridEngine", plugin: GridEngine, mapping: "gridEngine" }],
   },
-  backgroundColor: 0x46c6f7,
+  backgroundColor: 0x212124,
   roundPixels: true,
   pixelArt: true,
-  scene: [
-    BootScene,
-    GardenScene,
-    LibraryScene,
-    ClassroomScene,
-    Dialogue,
-    EndScene,
-  ],
+
+  // Add all scenes to be used here
+  scene: [BootScene, Dialogue, EndScene, ...floor5, ...floor4],
 });
