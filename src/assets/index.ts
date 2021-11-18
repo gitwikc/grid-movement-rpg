@@ -19,6 +19,7 @@ import DialogExclm from "./ui/dialog-exclm.png";
 import DialogEllipsis from "./ui/dialog-ellps.png";
 
 // Import EXTRA ASSETS
+import GnjGun from "./sounds/ooo.mp3";
 
 import Cursor from "../assets/ui/cursor.png";
 import CursorDown from "../assets/ui/cursor-down.png";
@@ -55,4 +56,8 @@ export const ui = {
   dialogueExclm: DialogExclm,
   cursor: Cursor,
   cursorDown: CursorDown,
+};
+
+export const sounds = {
+  gnjGun: GnjGun,
 };

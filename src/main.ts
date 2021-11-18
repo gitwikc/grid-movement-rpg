@@ -3,6 +3,8 @@ import { GridEngine } from "grid-engine";
 import BootScene from "./scenes/BootScene";
 import Dialogue from "./scenes/Dialogue";
 import { ui } from "./assets";
+import floor5 from "./scenes/gameplay/floor5";
+import floor4 from "./scenes/gameplay/floor4";
 
 const app = document.getElementById("app")!;
 app.onmousedown = () => {
@@ -32,10 +34,10 @@ const game = new Phaser.Game({
   plugins: {
     scene: [{ key: "gridEngine", plugin: GridEngine, mapping: "gridEngine" }],
   },
-  backgroundColor: 0x46c6f7,
+  backgroundColor: 0x212124,
   roundPixels: true,
   pixelArt: true,
 
   // Add all scenes to be used here
-  scene: [BootScene, Dialogue],
+  scene: [BootScene, Dialogue, ...floor5, ...floor4],
 });

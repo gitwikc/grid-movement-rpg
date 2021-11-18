@@ -1,26 +1,22 @@
 {
-    "Map/SizeTest": {
-        "height": 4300,
-        "width": 2
-    },
-    "activeFile": "hallways/floor-4.tmx",
+    "activeFile": "hallways/floor-5.tmx",
     "expandedProjectPaths": [
-        "tilesets",
         ".",
         "hallways",
-        "rooms"
+        "rooms",
+        "tilesets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 0.75,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "hallways/floor-4.tmx": {
-            "scale": 1,
-            "selectedLayer": 3,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 432,
+                "x": 222,
+                "y": 2153
             }
         },
         "hallways/floor-4.tmx#furniture": {
@@ -33,89 +29,55 @@
             "scaleInDock": 1
         },
         "hallways/floor-5.tmx": {
-            "scale": 1,
-            "selectedLayer": 3,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 444,
-                "y": 1880.5
+                "x": 432,
+                "y": 2279
             }
         },
         "hallways/floor-5.tmx#furniture": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 1
         },
         "hallways/floor-5.tmx#room": {
             "scaleInDock": 1
         },
         "hallways/floor-5.tmx#things": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "map1.tmx": {
-            "scale": 0.9351562499999999,
-            "selectedLayer": 2,
-            "viewCenter": {
-                "x": 484.9456975772766,
-                "y": 481.7376775271512
-            }
-        },
-        "map1.tmx#ground": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "map1.tmx#things": {
-            "scaleInDock": 1
-        },
-        "map2.tmx": {
-            "scale": 0.9351562499999999,
-            "selectedLayer": 1,
-            "viewCenter": {
-                "x": 479.5989974937344,
-                "y": 481.7376775271512
-            }
-        },
-        "map2.tmx#furniture": {
-            "scaleInDock": 0.75
-        },
-        "map2.tmx#room": {
             "scaleInDock": 1
         },
         "rooms/classroom.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 2,
+            "scale": 0.9242708333333333,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 480,
-                "y": 479.33333333333337
+                "x": 479.2967429279838,
+                "y": 479.83770990645775
             }
         },
         "rooms/classroom.tmx#furniture": {
-            "scaleInDock": 0.75,
-            "scaleInEditor": 1
-        },
-        "rooms/classroom.tmx#room": {
-            "scaleInDock": 0.75,
-            "scaleInEditor": 1
-        },
-        "test.tmx": {
-            "scale": 0.5727588383838383,
-            "selectedLayer": 4,
-            "viewCenter": {
-                "x": 767.3386607880959,
-                "y": 671.3122072196197
-            }
-        },
-        "test.tmx#furniture": {
             "scaleInDock": 1
         },
-        "test.tmx#room": {
+        "rooms/classroom.tmx#room": {
+            "scaleInDock": 1
+        },
+        "rooms/festroom.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 410,
+                "y": 477.5
+            }
+        },
+        "rooms/festroom.tmx#furniture": {
+            "scaleInDock": 1
+        },
+        "rooms/festroom.tmx#room": {
+            "scaleInDock": 1
+        },
+        "rooms/festroom.tmx#things": {
             "scaleInDock": 1
         },
         "tilesets/furniture.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "tilesets/room.tsx": {
-            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "tilesets/things.tsx": {
@@ -125,39 +87,28 @@
     },
     "last.exportedFilePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/rooms",
     "last.externalTilesetPath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/tilesets",
-    "last.imagePath": "D:/Sattwik/code/web/js/game-dev/clean-rpg/src/assets/maps/tilesets",
-    "map.height": 72,
-    "map.lastUsedExportFilter": "JSON map files (*.json)",
-    "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 48,
-    "map.tileWidth": 48,
-    "map.width": 18,
+    "map.lastUsedExportFilter": "All Files (*)",
     "openFiles": [
         "hallways/floor-5.tmx",
         "rooms/classroom.tmx",
         "hallways/floor-4.tmx",
-        "tilesets/things.tsx"
+        "tilesets/things.tsx",
+        "rooms/festroom.tmx",
+        "tilesets/furniture.tsx"
     ],
     "project": "maps.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "hallways/floor-5.tmx",
-        "rooms/classroom.tmx",
+        "tilesets/furniture.tsx",
+        "rooms/festroom.tmx",
         "tilesets/things.tsx",
         "hallways/floor-4.tmx",
-        "tilesets/furniture.tsx",
+        "rooms/classroom.tmx",
+        "hallways/floor-5.tmx",
         "tilesets/room.tsx",
         "map2.tmx",
         "map1.tmx",
         "test.tmx"
     ],
-    "tileset.embedInMap": true,
-    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
-    "tileset.lastUsedFormat": "tsx",
-    "tileset.tileSize": {
-        "height": 48,
-        "width": 48
-    },
-    "tileset.transparentColor": "#ffffff",
-    "tileset.useTransparentColor": false
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)"
 }
