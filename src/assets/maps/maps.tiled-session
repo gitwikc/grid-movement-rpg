@@ -15,8 +15,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 222,
-                "y": 2153
+                "x": 432,
+                "y": 1727
             }
         },
         "hallways/floor-4.tmx#furniture": {
@@ -33,7 +33,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 432,
-                "y": 2279
+                "y": 1175
             }
         },
         "hallways/floor-5.tmx#furniture": {
@@ -63,8 +63,8 @@
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 410,
-                "y": 477.5
+                "x": 480,
+                "y": 479.5
             }
         },
         "rooms/festroom.tmx#furniture": {

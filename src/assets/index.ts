@@ -18,11 +18,15 @@ import SpritesheetStudentM from "./spritesheets/student-m.png";
 import DialogExclm from "./ui/dialog-exclm.png";
 import DialogEllipsis from "./ui/dialog-ellps.png";
 
-// Import EXTRA ASSETS
+// Import Music
 import GnjGun from "./sounds/ooo.mp3";
+import TreatYouBetter from "./sounds/treat-you-better.mp3";
+import Rasoda from "./sounds/rasoda.mp3";
+import CoffinDanceMonkey from "./sounds/coffin-dance-monkey.mp3";
 
 import Cursor from "../assets/ui/cursor.png";
 import CursorDown from "../assets/ui/cursor-down.png";
+import EndImg from "../assets/ui/end-img.png";
 
 export const tilesets = {
   ground: GroundTileset,
@@ -56,8 +60,12 @@ export const ui = {
   dialogueExclm: DialogExclm,
   cursor: Cursor,
   cursorDown: CursorDown,
+  endImg: EndImg,
 };
 
 export const sounds = {
   gnjGun: GnjGun,
+  treatYouBetter: TreatYouBetter,
+  rasoda: Rasoda,
+  coffinDanceMonkey: CoffinDanceMonkey,
 };

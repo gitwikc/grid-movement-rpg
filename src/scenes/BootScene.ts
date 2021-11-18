@@ -1,6 +1,7 @@
 import { Position } from "grid-engine";
 import { tilesets, ui, spritesheets, tiledTilemaps, sounds } from "../assets";
 import * as gameKeys from "../util/gameKeys";
+import musicStore from "../util/stores/musicStore";
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
@@ -70,7 +71,14 @@ export default class BootScene extends Phaser.Scene {
     this.load.image(gameKeys.uiImages.dialogueExclaim, ui.dialogueExclm);
 
     // Load other assets
+    this.load.image(gameKeys.uiImages.endImg, ui.endImg);
     this.load.audio(gameKeys.sounds.gnjGun, sounds.gnjGun);
+    this.load.audio(gameKeys.sounds.treatYouBetter, sounds.treatYouBetter);
+    this.load.audio(gameKeys.sounds.rasoda, sounds.rasoda);
+    this.load.audio(
+      gameKeys.sounds.coffinDanceMonkey,
+      sounds.coffinDanceMonkey
+    );
   }
 
   create() {
@@ -78,6 +86,9 @@ export default class BootScene extends Phaser.Scene {
       x: 13,
       y: 47,
     };
+
+    const music = musicStore.getState();
+    music.playNext(this);
 
     this.scene.start(gameKeys.scenes.floor5.hallway.key, {
       spawnPosition,

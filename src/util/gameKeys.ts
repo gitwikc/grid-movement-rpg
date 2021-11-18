@@ -79,15 +79,20 @@ export const scenes = {
 
 export const uiScenes = {
   Dialogue: "ui-dialogue",
+  EndScene: "scene-endscene",
 };
 
 export const uiImages = {
   dialogueExclaim: "dialog-exclm",
   dialogueEllipsis: "dialog-ellps",
+  endImg: "end-img",
 };
 
 export const sounds = {
   gnjGun: "sound-gnj",
+  rasoda: "sound-rasoda",
+  coffinDanceMonkey: "sound-coffin-dance-monkey",
+  treatYouBetter: "sound-treat-you-better",
 };
 
 /**

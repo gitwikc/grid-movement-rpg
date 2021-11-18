@@ -4,6 +4,7 @@ import { Objective } from "../../../../util/stores/gameStore";
 import { DialogAction } from "../../../Dialogue";
 import festInfo from "./festInfo.json";
 import endDialogue from "./endDlg.json";
+import { uiScenes } from "../../../../util/gameKeys";
 
 const characterInteractions: CharacterInteractions = {
   rishi: (scene, state) => ({
@@ -288,7 +289,10 @@ const characterInteractions: CharacterInteractions = {
         action: DialogAction.EXCLAIM,
         dialogueSets: endDialogue,
         callback: () => {
-          // TODO Show ending scene
+          scene.cameras.main.fadeOut(300, 0, 0, 0, () => {
+            scene.scene.start(uiScenes.EndScene);
+            scene.scene.stop();
+          });
         },
       };
     return {};

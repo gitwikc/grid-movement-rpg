@@ -5,6 +5,7 @@ import Dialogue from "./scenes/Dialogue";
 import { ui } from "./assets";
 import floor5 from "./scenes/gameplay/floor5";
 import floor4 from "./scenes/gameplay/floor4";
+import EndScene from "./scenes/EndScene";
 
 const app = document.getElementById("app")!;
 app.onmousedown = () => {
@@ -39,5 +40,5 @@ const game = new Phaser.Game({
   pixelArt: true,
 
   // Add all scenes to be used here
-  scene: [BootScene, Dialogue, ...floor5, ...floor4],
+  scene: [BootScene, Dialogue, EndScene, ...floor5, ...floor4],
 });
